@@ -1,0 +1,401 @@
+id: p4mG8UQd3ozMCs4NEqsgLjME8hL7jN40mgr6PyIS
+createdBy: erf3ktYZevr4
+dateCreated: 1689064662293
+name: Komplexaufgabe 3 - Interrupts
+meta:
+  logo: >-
+    https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_EAVD/master/excercise/images/excercise_04.png
+  description: >-
+    Die Aufgabe 3 zielt darauf eine Motorsteuerung mit einer visuellen Ausgabe zu kombinieren und für die Synchronisation der beiden Komponenten einen Interrupt zu nutzen.
+  selfAssign: true
+members:
+  teacher: []
+  student: []
+modules:
+  - url: >-
+      https://raw.githubusercontent.com/edrys-labs/module-markdown-it/2.0.0/index.html
+    config: >-
+      # Komplexaufgabe 3 - Interrupts
+
+      Liebe Teilnehmerinnen und Teilnehmer, analog zu den vorangegangen soll Ihnen auch diese Komplexaufgabe Gelegenheit geben sich zusätzlich zu den praktischen Übungen mit den Grundlagen der
+      Programmierung eingebetteter Systeme vertraut zu machen.
+      Sollten Sie Fragen haben, können Sie sich gerne an das Team wenden.
+
+      Noch umfasst unsere Lösung keinen Multi-User-Modus - entsprechend könnten Sie einen Kommilitonen ziemlich ärgern, wenn Sie ihm die Kontrolle entziehen.
+      Prüfen Sie also bitte vorher, ob das Setup gerade von jemand anderem verwendet wird.
+      Die „Station“ merkt sich immer den letzten Stand, verlassen Sie Ihren Arbeitsplatz ordentlich und kopieren sie vor dem verlassen einfach den Original-Code in den Editor …
+
+      Wir freuen uns auf Ihr Feedback und Ihre Anregungen.
+
+      _Ihr CrossLab Team_
+    studentConfig: ''
+    teacherConfig: >-
+      ## Welcome for Teachers
+
+
+      > This can be used as a base laboratory to create further and more
+      elaborate labs with [edrys-Lite](https://edrys-labs.github.io).
+
+      > You are currently in the Lobby. If there is a station available you can
+      switch to it and try out the terminal.
+
+      > Otherwise, if you are in teacher-mode you can share a lab by clicking
+      onto `setting` >> `station` and then by clicking the presented link,
+
+      > which is the same as the current link, but only with the word `station`
+      instead of `classroom`.
+    stationConfig: ''
+    showInCustom: lobby
+    width: full
+    height: huge
+  - url: https://edrys-labs.github.io/module-editor/index.html
+    config:
+      runCommand: execute
+      language: cpp
+      theme: light
+      editorText: |-
+        #include <Stepper.h>
+        #include <Adafruit_NeoPixel.h>
+
+        // Anzahl der Schritte pro Umdrehung
+        #define STEPS      2048
+        // Motorgeschwindigkeit in RPM
+        #define MOTOR_RPM     6
+        Stepper stepper(STEPS, 8, 10, 9, 11); // Motor Pins
+
+        #define PIN           3
+        #define NUMPIXELS    24
+        Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+        int position = 0;
+
+        void setup()
+        {
+            pinMode(8, OUTPUT);
+            pinMode(9, OUTPUT);
+            pinMode(10, OUTPUT);
+            pinMode(11, OUTPUT);
+            pinMode(11, OUTPUT);
+            pinMode(2, INPUT_PULLUP);
+
+            Serial.begin(9600);
+            Serial.println("Motor startet");
+
+            pixels.begin();
+            pixels.clear();
+
+            stepper.setSpeed(MOTOR_RPM);
+            int steps = 8;
+            int counter = 0;
+            // Generiere 3 Drehungen
+            // Überwache den Endlagensensor im Polling Mode und aktiviere den LED Ring
+            while (counter < 3 * STEPS) {
+                stepper.step(steps);
+                position=position+steps;
+                if (digitalRead(2) == 0) {
+                  for (int i=0; i<NUMPIXELS; i++)
+                    pixels.setPixelColor(i, pixels.Color(0, 150, 0));
+                  pixels.show();
+                } else {
+                  pixels.clear();
+                  pixels.show();
+                }
+                counter += 3;
+                Serial.println(counter);
+            }
+            Serial.println("3 Runden absolviert");
+        }
+
+        void loop()
+        {
+        }
+    showInCustom: station
+    width: full
+    height: medium
+  - url: https://edrys-labs.github.io/module-station-stream/index.html
+    stationConfig:
+      video: true
+      audio: false
+    showInCustom: station
+    width: half
+    height: medium
+  - url: https://edrys-labs.github.io/module-pyxtermjs/index.html
+    config: ''
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig:
+      server: http://localhost:5000/pty
+      execute: execute
+      script: >
+        echo $CODE | base64 --decode > Hello.ino
+
+        arduino-cli sketch new Hello
+
+        olddir=$(pwd)
+
+        mv Hello.ino Hello
+
+        cd Hello
+
+        arduino-cli board attach -p /dev/ttyACM0 -b arduino:avr:uno
+
+        cd $olddir
+
+        arduino-cli compile Hello && arduino-cli upload -p /dev/ttyACM0 Hello &&
+        arduino-cli monitor -p /dev/ttyACM0
+      enable:
+        teacher: true
+        student: true
+    showInCustom: station
+    width: full
+    height: tall
+  - url: >-
+      https://raw.githubusercontent.com/edrys-labs/module-markdown-it/2.0.0/index.html
+    config: >-
+      # Komplexaufgabe 3 - Interrupts
+
+
+      > Die Aufgabe 3 zielt darauf eine Motorsteuerung mit einer visuellen
+      Ausgabe zu kombinieren und für die
+
+      > Synchronisation der beiden Komponenten einen Interrupt zu nutzen.
+
+
+      Die Arduino-Implementierung illustriert die erwartete Funktionalität
+      grundlegend.
+
+      Ein Schrittmotor mit 2048 Schritten bewegt sich für 3 volle Umdrehungen.
+
+      Der Motor wird über einen Treiber (ULN2003) angesteuert.
+
+      Die Ansteuerung erfolgt über die Pins 8, 9, 10 und 11.
+
+      An der breiten Spitze des Zeigers ist ein Magnet befestigt, der einen
+      Sensor aktiviert, sofern er darüber fährt.
+
+      Dieser ist am Pins 2 angeschlossen.
+
+      Die vorliegende Implementierung realisiert ein Polling des Sensors
+      (`0`==Zeiger in der Nähe) und aktivert dann den LED-Ring.
+
+
+      Passen Sie diesen Code so an, dass auf dem LED-Ring die jeweilige Position
+      des Zeigers visualisiert wird.
+
+      Dazu müssen Sie den Code so erweitern, dass der Sensor mittels eines
+      Interrupts abgefragt wird:
+
+
+      + Integrieren Sie eine Interrupt-Routine, die bei einer fallenden Flanke
+      des Sensors aufgerufen wird.
+
+      + Ersetzen Sie den Positionswert des Zeigers `count` durch eine globale
+      Variabel `position`. Deren Wert wird innerhalb der Interrupt Service
+      Routine auf 0 gesetzt. Vergessen Sie dabei das `volatile` für die Variable
+      nicht!
+
+      + Bilden Sie den die Wert der `position` auf den Wertebereich des
+      LED-Rings (24 LEDs) ab.
+
+
+      ## Original Code
+
+
+      ```cpp
+
+      #include <Stepper.h>
+
+      #include <Adafruit_NeoPixel.h>
+
+
+      // Anzahl der Schritte pro Umdrehung
+
+      #define STEPS      2048
+
+      // Motorgeschwindigkeit in RPM
+
+      #define MOTOR_RPM     6
+
+      Stepper stepper(STEPS, 8, 10, 9, 11); // Motor Pins
+
+
+      #define PIN           3
+
+      #define NUMPIXELS    24
+
+      Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+
+      int position = 0;
+
+
+      void setup()
+
+      {
+          pinMode(8, OUTPUT);
+          pinMode(9, OUTPUT);
+          pinMode(10, OUTPUT);
+          pinMode(11, OUTPUT);
+          pinMode(11, OUTPUT);
+          pinMode(2, INPUT_PULLUP);
+
+          Serial.begin(9600);
+          Serial.println("Motor startet");
+
+          pixels.begin();
+          pixels.clear();
+
+          stepper.setSpeed(MOTOR_RPM);
+          int steps = 8;
+          int counter = 0;
+          // Generiere 3 Drehungen
+          // Überwache den Endlagensensor im Polling Mode und aktiviere den LED Ring
+          while (counter < 3 * STEPS) {
+              stepper.step(steps);
+              position=position+steps;
+              if (digitalRead(2) == 0) {
+                for (int i=0; i<NUMPIXELS; i++)
+                  pixels.setPixelColor(i, pixels.Color(0, 150, 0));
+                pixels.show();
+              } else {
+                pixels.clear();
+                pixels.show();
+              }
+              counter += 3;
+              Serial.println(counter);
+          }
+          Serial.println("3 Runden absolviert");
+      }
+
+
+      void loop()
+
+      {
+
+      }
+
+      ```
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: >-
+      ## Instructions for Station-Sharing
+
+
+      You are currently responsible for sharing a station of this lab.
+
+      You have multiple options to share a or your terminal.
+
+      Therefor we use the pyxtermjs - terminal server from:
+
+
+      https://github.com/edrys-labs/module-pyxtermjs
+
+
+      ### Using Docker
+
+
+      If you haven't done it so far, install
+      [docker](https://docs.docker.com/engine/install/).
+
+      Or, follow one of the instruction-videos for your system:
+
+
+      <details>
+
+      <summary>Install Docker on Linux</summary>
+
+      <iframe
+        style="width: 100%; aspect-ratio: 16 / 9"
+        src="https://www.youtube.com/embed/cqbh-RneBlk?si=juvUM5d2OSZ28WBv"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+      </details>
+
+
+      <details>
+
+      <summary>Install Docker on Windows</summary>
+
+      <iframe
+        style="width: 100%; aspect-ratio: 16 / 9"
+        src="https://www.youtube.com/embed/WDEdRmTCSs8?si=X0agStn1akNcZLGu"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+      </details>
+
+
+      <details>
+
+      <summary>Install Docker on MacOS</summary>
+
+      <iframe
+        style="width: 100%; aspect-ratio: 16 / 9"
+        src="https://www.youtube.com/embed/-EXlfSsP49A?si=OZ_l4_2hDKb6ULQ_"
+        title="YouTube video player"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        referrerpolicy="strict-origin-when-cross-origin"
+        allowfullscreen></iframe>
+      </details>
+
+
+      Then the only thing that is required is to run the following command:
+
+
+      ```bash
+
+      docker run -it -p 5000:5000 crosslab/edrys_pyxtermjs_arduino --device=/dev/ttyACM0:/dev/ttyACM0
+
+      ```
+
+
+      This will download the pyxtermjs terminal-server from docker-hub and run
+      it in a secure environment.
+
+      It contains support for:
+
+
+      - `arduino`
+
+      - `arduino-cli`
+
+
+      ### Using Python
+
+
+      You can also share your terminal directly via Python, visit the follwing
+      project
+
+
+      https://github.com/edrys-labs/module-pyxtermjs
+
+
+      ... the easiest way is to perform the following steps:
+
+
+      ``` bash
+
+      # 1. clone the repository or download the folder manually
+
+      git clone https://github.com/edrys-labs/module-pyxtermjs
+
+
+      # 2. install all required sources
+
+      pip3 install -r requirements.txt
+
+
+      # 3. run the terminal-server
+
+      python3 -m pyxtermjs --cors True --command bash --port 5000
+
+      ```
+    showInCustom: station
+    width: half
+    height: tall
