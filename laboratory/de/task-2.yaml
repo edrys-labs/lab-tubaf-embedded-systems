@@ -17,7 +17,7 @@ members:
   student: []
 modules:
   - url: >-
-      https://raw.githubusercontent.com/cross-lab-project/edrys_module-markdown-it/2.0.0/index.html
+      https://raw.githubusercontent.com/edrys-labs/module-markdown-it/2.0.0/index.html
     config: >-
       # Komplexaufgabe 2 - Analog-Digital-Wandler
 
@@ -92,7 +92,7 @@ modules:
     showInCustom: lobby
     width: full
     height: huge
-  - url: https://cross-lab-project.github.io/edrys_module-editor/index.html
+  - url: https://edrys-labs.github.io/module-editor/index.html
     config:
       editorText: |-
         #include <Servo.h>
@@ -167,14 +167,14 @@ modules:
     showInCustom: station
     width: full
     height: medium
-  - url: https://cross-lab-project.github.io/edrys_module-station-stream/index.html
+  - url: https://edrys-labs.github.io/module-station-stream/index.html
     stationConfig:
       video: true
       audio: false
     showInCustom: station
     width: half
     height: medium
-  - url: https://cross-lab-project.github.io/edrys_module-pyxtermjs/index.html
+  - url: https://edrys-labs.github.io/module-pyxtermjs/index.html
     config: ''
     studentConfig: ''
     teacherConfig: ''
@@ -205,7 +205,7 @@ modules:
     width: full
     height: tall
   - url: >-
-      https://raw.githubusercontent.com/cross-lab-project/edrys_module-markdown-it/2.0.0/index.html
+      https://raw.githubusercontent.com/edrys-labs/module-markdown-it/2.0.0/index.html
     config: >-
       # Komplexaufgabe 2 - Analog-Digital-Wandler
 
