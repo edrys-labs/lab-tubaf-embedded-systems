@@ -11,7 +11,7 @@ or use the Deploy-Lab buttons to immediately create a new lab.
 In order to open a station, you have to to use the terminal server [pyxtermjs](https://github.com/edrys-labs/module-pyxtermjs), which can be started in a secure docker-environment with the following command:
 
 ```bash
-docker run -it -p 5000:5000 crosslab/edrys_pyxtermjs_arduino --device=/dev/ttyACM0:/dev/ttyACM0
+docker run -it -p 5000:5000 --device=/dev/ttyACM0:/dev/ttyACM0 crosslab/edrys_pyxtermjs_arduino
 ```
 
 ... alternatively you can either setup your own docker-environment or use the terminal server directly with Python.
