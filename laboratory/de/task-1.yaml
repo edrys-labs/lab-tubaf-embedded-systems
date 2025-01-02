@@ -1,5 +1,5 @@
 id: Msw5YCj3DZzflNZTRLTr8PbUQO721rmpCxZlDqRN
-createdBy: 15sg55K8KHkN
+createdBy: 3bgttt8YaruEa
 dateCreated: 1689064662293
 name: Komplexaufgabe 1 - Distanzmessung
 meta:
@@ -12,63 +12,60 @@ meta:
     Ergebnis steht eine Applikation die kontinuierlich die Distanz zu einem
     Hindernis vermisst.
   selfAssign: true
+  defaultNumberOfRooms: '3'
 members:
   teacher: []
   student: []
 modules:
   - url: >-
       https://raw.githubusercontent.com/edrys-labs/module-markdown-it/2.0.0/index.html
-    config: >
+    config: >-
       # Komplexaufgabe 1 - Distanzmessung
 
 
       Liebe Teilnehmerinnen und Teilnehmer,
 
 
-      dies ist die erste Komplexaufgabe, die Ihnen Gelegenheit geben soll, sich
+      dies ist die erste Komplexaufgabe, die Ihnen Gelegenheit geben soll, sich 
+
       zusätzlich zu den praktischen Übungen mit den Grundlagen der
-      Programmierung eingebetteter Systeme vertraut zu machen.
+      Programmierung 
+
+      eingebetteter Systeme vertraut zu machen.
 
       Wir werden nunmehr jede Woche eine neue Aufgabe für Sie freischalten.
 
+       Wir haben uns für eine Remote-Lösung entschieden da die Aufbauten Schritt 
+       für Schritt immer aufwändiger werden. Entsprechend erlaubt uns der Webzugriff 
+       einen ressourcensparenden und zeiteffizienten Einsatz der Setups. Die Umsetzung
+       ist Bestandteil eines Forschungsprojektes und wir freuen uns über Ihr Feedback.
+
+      > Die Aufgabenstellung umfasst zwei Aufgabenkomplexe A und B. Der Bereich 
+       A) richtet sich insbesondere an Studierende
+       mit bislang wenig  ausgeprägter Programmiererfahrung. Studierende, die mit dem 
+       Mikrocontroller vertraut sind, nutzen diese Aufgabe um Ihre Fähigkeiten mit dem 
+       Aufgabenkomplex B) zu vertiefen.
+       
       Die Aufgaben sind so konzipiert, dass Sie die Lösung selbstständig
-      erarbeiten können.
+      erarbeiten 
 
-      Sollten Sie dennoch Fragen haben, können Sie sich gerne an die Betreuer
+      können. Sollten Sie dennoch Fragen haben, können Sie sich gerne an die
+      Betreuer
+
       wenden.
+        
+      Für beide Aufgabenkomplexe eräutert Raum 1 die Fragestellungen und
+      Lernziele. Danach
 
+      sind für A) zunächst Raume 2 zu bearbeiten und für B) der Raum 3. 
 
-
-      Wir haben uns für eine Remote-Lösung entschieden, da die Aufbauten
-      Schritt für Schritt immer aufwändiger werden.
-
-      Entsprechend erlaubt uns der Webzugriff einen ressourcensparenden und
-      zeiteffizienten Einsatz der Setups.
-
-      Die Umsetzung dieser Remote-Lösung ist für uns alle neu und wir bitten
-      Sie daher um Verständnis, falls es zu Anfang noch zu Problemen kommen
-      sollte.
-
-
-
-      Noch umfasst unsere Lösung keinen Multi-User-Modus - entsprechend könnten
-      Sie einen Kommilitonen ziemlich ärgern, wenn Sie ihm die Kontrolle
-      entziehen.
-
-      Prüfen Sie also bitte vorher, ob das Setup gerade von jemand anderem
-      verwendet wird.
-
-      Die „Station“ merkt sich immer den letzten Stand, verlassen Sie Ihren
-      Arbeitsplatz ordentlich und kopieren sie vor dem verlassen einfach den
-      Original-Code in den Editor ...
-
-
-
+      Die praktische Umsetzung auf dem Laborsetup erfolgt in beiden Fällen auf
+      der Station.
+       
       Wir freuen uns auf Ihr Feedback und Ihre Anregungen.
 
 
       _Ihr CrossLab Team_
-
     studentConfig: ''
     teacherConfig: >-
       ## Welcome for Teachers
@@ -92,56 +89,17 @@ modules:
   - url: https://edrys-labs.github.io/module-editor/index.html
     config:
       editorText: |
-        #include <Wire.h>
-        #include <LiquidCrystal_PCF8574.h>
+        // Kopieren Sie den für Ihren Aufgabenkomplex
+        // relevanten initalen Code aus der untenstehenden 
+        // Erläuterung heraus.
 
-        int lcdi2c = 0x27; // <- Hart eingecodete Adresse, vgl. Datenblatt
-        LiquidCrystal_PCF8574 lcd(lcdi2c);
+         void setup()
+         {
+         }
 
-        const int trigPin = 12;
-        const int echoPin = 11;
-
-        void setup()
-        {
-          lcd.begin(16, 2);
-          lcd.setBacklight(255);
-          lcd.clear();
-          lcd.setCursor(0, 0);
-          lcd.print("#CrossLab - 2024");
-          lcd.setCursor(0, 1);
-          lcd.print("Komplexaufgabe 0");
-
-          Serial.begin(9600);
-          Serial.print("Los geht's");
-
-          // Aufgabe 1: Ersetzen Sie die Konfiguration der
-          // Pins trigPin und echoPin als Aus- bzw. Eingang
-          pinMode(trigPin, OUTPUT);
-          pinMode(echoPin, INPUT);
-        }
-
-        void loop() {
-          digitalWrite(trigPin, LOW);
-          delayMicroseconds(5);
-          digitalWrite(trigPin, HIGH);
-          delayMicroseconds(10);
-          digitalWrite(trigPin, LOW);
-          while (digitalRead(echoPin) == LOW);
-          unsigned long start_time = micros();
-          while (digitalRead(echoPin) == HIGH);
-          unsigned long duration = micros() - start_time;
-          Serial.println(duration);
-
-          // Aufgabe 3: Berechnen Sie die Entfernung in cm und geben
-          // Sie diese über den seriellen Port und Display aus.
-          // float distance = duration ....
-          // Serial.print(distance);
-          // Serial.println("cm");
-          // lcd.setCursor(0, 1);
-          // lcd.print(distance);
-
-          delay(1000);
-        }
+         void loop() 
+         {
+         }
       runCommand: execute
       language: cpp
       theme: light
@@ -186,243 +144,376 @@ modules:
       https://raw.githubusercontent.com/edrys-labs/module-markdown-it/2.0.0/index.html
     config: >-
 
-      # Komplexaufgabe 1 - Distanzmessung
+      # Remote Labor Implementierung (A und B)
+       
+      ## Aufgabenkomplex A
 
 
-      > Im Rahmen dieser Aufgabe machen Sie sich mit der
-      Remote-Entwicklungsumgebung vertraut und wenden Ihre Kenntnisse zur
-      digitalen I/O Programmierung an.
+      > **Praktische Aufgabe 2**: Ergänzen Sie das Programm, die
+      Implementierungen für die Funktionen `runUSmeasurement` .
+
+      Gehen Sie dabei davon aus,, dass der Trigger Pin entsprechend den
+      Zeitvorgaben im nachfolgenden Diagramm gesetzt werden 
+
+      muss. Nutzen Sie für die am Simulator entwickelten Methoden für die
+      Messung des Zeitintervalls als Antwort des Sensors
 
 
-      Grundlage ist ein Arduino-Beispielprogramm, dass Sie __in Teilen auf eine
-      `avrlibc` Implementierung__ transformieren.
+      ![](https://www.researchgate.net/profile/Gavin-Anjitha/publication/341480237/figure/fig2/AS:892805480189952@1589872822526/Timing-Diagram-for-HC-SR04-Ultrasonic-Sensor_W640.jpg)
+
+        > **Praktische Aufgabe 3**:  Fügen Sie die Implementierung der Funktion  `duration2dist_cm`  hinzu.  Welche Annahmen 
+        treffen Sie dabei?
+
+      **Initialer Code für Aufgabenkomplex A**
 
 
-      Die Arduino-Implementierung illustriert die erwartete Funktionalität - ein
-      Distanzwert in `cm` wird über den seriellen Port ausgegebenen. Die Vorlage
-      sendet einen Triggerimpuls an den Ultraschallsensor und misst die Zeit bis
-      zum Empfang des Echos. Dieser Trigger ist so konfiguriert, dass zunächst
-      für 5 Mikrosekunden ein `LOW` Pegel anliegt, danach für 10 Mikrosekunden
-      ein `HIGH` Pegel. Wenn der Trigger-Pin dann auf `LOW` gesetzt wird,
-      startet die Messung (vgl [Datenblatt
-      SRF04](https://datasheetspdf.com/pdf-file/523589/ETC/SRF04/1)). Für die
-      Bestimmung der Distanz müssen wir also, wie im Arduino-Code gezeigt, die
-      Laufzeit des Echos erfassen. Dafür können Sie die auch in Ihrer Lösung die
-      `micros()` Funktion verwenden (die wir in einem späteren Projekt auch
-      ersetzen). Der Ultraschallsensor ist an den Pins 12 und 11 angeschlossen.
-
-
-      Folgen Sie den Anweisungen im Code und ersetzen Sie die Arduino-Funktionen
-      durch die entsprechenden `avrlibc` Befehle:
-
-
-      0. Aufgabe: Kritisieren Sie die Implementierung des Arduino-Beispiels.
-      Welches Problem tritt ggf. auf? Betrachten Sie dabei insbesondere die
-      Verwendung der `delayMicroseconds()` Funktion. Welche Verbesserungen
-      würden Sie vorschlagen?
-
-
-      1. Aufgabe: Ersetzen Sie die Zeilen 25 und 26 durch `DDRx`
-      Registerkonfigurationen. Ermitteln Sie dafür den zugehörigen für `trigPin`
-      und `echoPin` aus dem Datenblatt des Atmega328p.
-
-
-      2. Aufgabe: Ersetzen Sie die Zeilen 30, 32 und 34 durch eine `PORTx`
-      Registerkonfiguration. Evaluieren Sie in Zeile 37 den Status des `echoPin`
-      mittels `PINx`.
-
-
-      3. Aufgabe: Stellen Sie eine Formel zur Berechnung der Entfernung in cm
-      auf. Fügen Sie diese ein und geben Sie den Wert über den seriellen Port
-      und das Display aus.
-
-
-      ### Original Code
-
-
-      ``` cpp
-
-      #include <Wire.h>
-
-      #include <LiquidCrystal_PCF8574.h>
-
-
-      int lcdi2c = 0x27; // <- Hart eingecodete Adresse, vgl. Datenblatt
-
-      LiquidCrystal_PCF8574 lcd(lcdi2c);
-
+      ``` cpp   InitialCode.cpp
 
       const int trigPin = 12;
 
       const int echoPin = 11;
 
 
+      // Führt die US Messung aus, Rückgabewert ist die Zeitdauer bis 
+
+      // zum Empfang des Echos
+
+      long runUSmeasurement(int trig, int echo)
+
+      {
+            
+         return 1000;
+      }
+
+
+      float duration2dist_cm(long duration)
+
+      {
+         return 10000;
+      }
+
+
       void setup()
 
       {
-        lcd.begin(16, 2);
-        lcd.setBacklight(255);
-        lcd.clear();
-        lcd.setCursor(0, 0);
-        lcd.print("#CrossLab - 2024");
-        lcd.setCursor(0, 1);
-        lcd.print("Komplexaufgabe 0");
-
         Serial.begin(9600);
         Serial.print("Los geht's");
 
-        // Aufgabe 1: Ersetzen Sie die Konfiguration der
-        // Pins trigPin und echoPin als Aus- bzw. Eingang
         pinMode(trigPin, OUTPUT);
         pinMode(echoPin, INPUT);
       }
 
 
       void loop() {
-        digitalWrite(trigPin, LOW);
-        delayMicroseconds(5);
-        digitalWrite(trigPin, HIGH);
-        delayMicroseconds(10);
-        digitalWrite(trigPin, LOW);
-        while (digitalRead(echoPin) == LOW);
-        unsigned long start_time = micros();
-        while (digitalRead(echoPin) == HIGH);
-        unsigned long duration = micros() - start_time;
+        long duration = runUSmeasurement(trigPin, echoPin);
         Serial.println(duration);
 
-        // Aufgabe 3: Berechnen Sie die Entfernung in cm und geben
-        // Sie diese über den seriellen Port und Display aus.
-        // float distance = duration ....
+        // float distance = duration2dist_cm(duration);
         // Serial.print(distance);
         // Serial.println("cm");
-        // lcd.setCursor(0, 1);
-        // lcd.print(distance);
-
         delay(1000);
+      }
+
+      ```
+
+
+      ## Aufgabenkomplex B
+
+
+      > **Praktische Aufgabe 2**:  Nutzen Sie die Implementierung der  
+      [NewPing](https://bitbucket.org/teckel12/arduino-new-ping/src/master/)
+      Bibliothek für die objektorientierte Ansteuerung des SRF04  Sensors.
+      Arbeiten Sie sich dazu in die Dokumentation ein und identifizieren Sie die
+      Methoden, die Sie für die Bereitstellung der Distanzmessungen in
+      unterschiedlichen Einheiten benötigen.
+
+        > **Praktische Aufgabe 3**:  Fügen Sie Ihr Konfigurationsinterface ein, so dass Sie zwischen  verschiedenen Reichweiten und Ausgabeformaten unterscheiden können. Warum ist die Reichweite ein  wichtiger Parameter?
+
+      **Initialer Code für Aufgabenkomplex B**
+
+
+      ``` cpp   InitialCode.cpp
+
+      /*
+       * Posted on https://randomnerdtutorials.com
+       * created by http://playground.arduino.cc/Code/NewPing
+      */
+
+
+      #include <NewPing.h>
+       
+      #define TRIGGER_PIN 11
+
+      #define ECHO_PIN 12
+
+      #define MAX_DISTANCE 200
+
+
+      // NewPing setup of pins and maximum distance
+
+      NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); 
+       
+      void setup() {
+         Serial.begin(9600);
+      }
+       
+      void loop() {
+         delay(50);
+         unsigned int distance = sonar.ping_cm();
+         Serial.print(distance);
+         Serial.println("cm");
       }
 
       ```
     studentConfig: ''
     teacherConfig: ''
-    stationConfig: >-
-      ## Instructions for Station-Sharing
-
-
-      You are currently responsible for sharing a station of this lab.
-
-      You have multiple options to share a or your terminal.
-
-      Therefor we use the pyxtermjs - terminal server from:
-
-
-      https://github.com/edrys-labs/module-pyxtermjs
-
-
-      ### Using Docker
-
-
-      If you haven't done it so far, install
-      [docker](https://docs.docker.com/engine/install/).
-
-      Or, follow one of the instruction-videos for your system:
-
-
-      <details>
-
-      <summary>Install Docker on Linux</summary>
-
-      <iframe
-        style="width: 100%; aspect-ratio: 16 / 9"
-        src="https://www.youtube.com/embed/cqbh-RneBlk?si=juvUM5d2OSZ28WBv"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen></iframe>
-      </details>
-
-
-      <details>
-
-      <summary>Install Docker on Windows</summary>
-
-      <iframe
-        style="width: 100%; aspect-ratio: 16 / 9"
-        src="https://www.youtube.com/embed/WDEdRmTCSs8?si=X0agStn1akNcZLGu"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen></iframe>
-      </details>
-
-
-      <details>
-
-      <summary>Install Docker on MacOS</summary>
-
-      <iframe
-        style="width: 100%; aspect-ratio: 16 / 9"
-        src="https://www.youtube.com/embed/-EXlfSsP49A?si=OZ_l4_2hDKb6ULQ_"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen></iframe>
-      </details>
-
-
-      Then the only thing that is required is to run the following command:
-
-
-      ```bash
-
-      docker run -it -p 5000:5000 --device=/dev/ttyACM0:/dev/ttyACM0 crosslab/edrys_pyxtermjs_arduino
-
-      ```
-
-
-      This will download the pyxtermjs terminal-server from docker-hub and run
-      it in a secure environment.
-
-      It contains support for:
-
-
-      - `arduino`
-
-      - `arduino-cli`
-
-
-      ### Using Python
-
-
-      You can also share your terminal directly via Python, visit the follwing
-      project
-
-
-      https://github.com/edrys-labs/module-pyxtermjs
-
-
-      ... the easiest way is to perform the following steps:
-
-
-      ``` bash
-
-      # 1. clone the repository or download the folder manually
-
-      git clone https://github.com/edrys-labs/module-pyxtermjs
-
-
-      # 2. install all required sources
-
-      pip3 install -r requirements.txt
-
-
-      # 3. run the terminal-server
-
-      python3 -m pyxtermjs --cors True --command bash --port 5000
-
-      ```
+    stationConfig: ''
     showInCustom: station
     width: full
+    height: medium
+  - url: >-
+      https://raw.githubusercontent.com/edrys-labs/module-markdown-it/2.0.0/index.html
+    config: >-
+      # Simulatorübung Aufgabenkomplex A)
+
+
+      Der Ultraschallsensor kommuniziert mit dem Mikrocontroller über eine
+      Abfolge von Spannungswechseln. Darin wird der Start einer Messung genauso
+      kommuniziert, wie die Zeitdauer bis zum Empfang des Echos. Entsprechend
+      müssen wir uns zunächst damit beschäftigen die Flankenwechsel in den
+      Signalverläufen zu erkennen und die zugehörigen Zeitfenster zu vermessen.
+
+
+      Wir nehmen an, dass am Pin 2 des Mikrocontrollers ein Button befestigt
+      ist. Das nebenstehende Programm wertet dessen Zustand aus und signalisiert
+      dessen Wechsel.  
+
+
+      > **Praktische Aufgabe 1**: Ergänzen Sie das Programm, um eine
+      Zeitmessung, um zu erfassen wie lange der Button gedrückt wurde. 
+
+
+      >  **Konzeptionelle Aufgabe 1**: Betrachten Sie dabei in der
+      [Dokumentation](https://docs.arduino.cc/language-reference/de/funktionen/time/millis/)
+      die unterschiedlichen Möglichkeiten  der Zeitmessung mit `millis()` und
+      `micros()`. Begründen Sie quantitativ warum welche Funktion mit Blick auf
+      den Einsatz mit dem Ultraschallsensor genutzt werden sollte.
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 2
+    width: half
+    height: medium
+  - url: https://edrys-labs.github.io/module-editor/index.html
+    config:
+      runCommand: execute
+      language: cpp
+      editorText: |
+        // Pin-Definitionen
+        const int buttonPin = 2; // Der Pin, an dem der Button angeschlossen ist
+
+        // Variable, um den Zustand des Buttons zu speichern
+        bool buttonPressed = false;
+
+        void setup() {
+          pinMode(buttonPin, INPUT);
+          Serial.begin(9600);
+        }
+
+        void loop() {
+          int buttonState = digitalRead(buttonPin);
+
+          if (buttonState==HIGH && buttonPressed == false){
+              buttonPressed = true;
+              Serial.println("Button pressed");
+          }
+          if (buttonState==LOW && buttonPressed == true){
+              buttonPressed = false;
+              Serial.println("Button released");
+          }
+        }
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 2
+    width: full
+    height: huge
+  - url: https://edrys-labs.github.io/module-avr8js/index.html
+    config:
+      modules: >
+        <wokwi-led color='green'   pin='3' label='Pin 3'></wokwi-led>
+
+        <wokwi-pushbutton color='green'   pin='2' label='Pin
+        2'></wokwi-pushbutton>
+
+        <span id='simulation-time'></span>
+      execute: execute
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 2
+    width: half
+    height: medium
+  - url: https://edrys-labs.github.io/module-markdown-it/index.html
+    config: >-
+      # Aufgabeninhalt
+
+
+      ## Lernziele
+
+
+      ### Aufgabenkomplex A
+
+
+      > Entwickeln Sie einen Programmcode, mit dem einfache Distanzmessungen mit
+      Hilfe eines 
+
+      [Ultraschallsensors](https://www.conrad.de/de/ratgeber/industrie-40/ultraschallsensoren.html) 
+
+      umgesetzt werden können.
+
+
+      Im Rahmen dieser Aufgabenstellung:
+
+
+      1. erarbeiten Sie sich die Methoden für die systematische Analyse eines
+      Sensordatenblattes 
+
+      2. setzen die Muster für die Ansteuerung des Sensors um und
+
+      3. entwickeln Codes in C für die Auswertung von Messungen.
+
+
+      Sie erarbeiten sich dafür die Struktur eines Code Fragmentes, das auf der
+      Basis von Arduino-Bibliotheken
+
+      geschrieben und ergänzen Funktionen. Die Ausgabe erfolgt über die Serielle
+      Schnittestelle oder wahlweise
+
+      über das Display.
+
+        > Der Zeitaufwand für die Umsetzung der Aufgabe beträgt etwa 45 Minuten.
+
+        ### Aufgabenkomplex B
+        
+       Im Rahmen dieser Aufgabenstellung:
+
+       > Entwickeln Sie ein Distanzmessystem, dass es Ihnen erlaubt, per Serielle Schnittstelle auszuwählen, 
+       ob die Ausgaben auf dem Display in cm oder inch realisiert werden sollen.
+       
+       Diese Aufgabenstellung baut hauptsächlich auf der "Nutzung" bestehender Implementierungen auf.
+
+       1. arbeiten Sie sich in den Quellcode eines Open-Source Projektes ein,
+       2. explorieren Sie das Programmierinterface der LCD Implementierung 
+       3. kombinieren Methoden in einem kleinen Projekt, dass einen Nutzerkonfiguration des Messystems zulässt.
+          
+      > Der Zeitaufwand für die Umsetzung der Aufgabe beträgt etwa 45 Minuten.
+
+
+      ## Technische Basis
+
+
+      Als eingebettetes System wird ein Mikrocontroller der Firma Atmel
+      verwendet. Der Mikrocontroller ist
+
+      auf einem [Arduino-Board Uno Rev.
+      3](https://docs.arduino.cc/hardware/uno-rev3/) verbaut.
+
+
+      Grundlage der eigentlichen Aufgabe ist ein einfacher, zweiäugiger
+      Ultraschallsensor des Typs 
+
+      ([SRF04](https://datasheetspdf.com/pdf-file/523589/ETC/SRF04/1)). Dieser
+      ist in der Lage Reichweiten 
+
+      bis etwa 10 m abzudecken. In unserer Anwendung wird er auf kurze Distanzen
+      bis etwa 50cm verwendet.
+
+      Zusätzlich ist ein 16x2 Display mit dem Mikrocontroller verbunden.
+
+
+      | Bautteil                | Bezeichnung | Elektrische
+      Verbindung                   |
+
+      | ----------------------- | ----------- |
+      ---------------------------------------- |
+
+      | Ultraschallsensor       | SRF04       | 5V, GND, Trigger (Pin 11), Echo
+      (Pin 12) |
+
+      | LCD module display 2x16 |             | 5V, GND, SCL (Pin 19), SDA (Pin
+      18)      |
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 1
+    width: full
+    height: tall
+  - url: https://edrys-labs.github.io/module-markdown-it/index.html
+    config: >-
+      # Arduino Layout
+
+
+      ![ArduinoLayout](https://docs.arduino.cc/static/6ec5e4c2a6c0e9e46389d4f6dc924073/a6d36/Pinout-UNOrev3_latest.png)
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 1
+    width: half
+    height: tall
+  - url: https://edrys-labs.github.io/module-markdown-it/index.html
+    config: >-
+      # Simulatorübung Aufgabenkomplex B
+          
+      Zunächst soll das Interface für die Konfiguration anhand einer Simulation
+      vorbereitet. Der Quellcode im Simulator stellt Ihnen einen Zugriff auf das
+      LCD bereit.
+        
+        > **Praktische Aufgabe 1**:   Erweitern Sie den Code so, dass der Nutzende durch Anweisungen auf dem Display angeleitet wird, eine maximale Messdistanz und ein Maßeinheit für die Distanzmessung anzugeben.
+
+      >  **Konzeptionelle Aufgabe 1**:   Überlegen Sie sich  inbesondere  welche
+      fehlerhaften Eingaben durch den  Nutzenden möglich sind und wie diese
+      "abgefangen" werden können  . 
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 3
+    width: half
+    height: medium
+  - url: https://edrys-labs.github.io/module-editor/index.html
+    config:
+      runCommand: execute
+      language: cpp
+      editorText: |
+        #include <LiquidCrystal_I2C.h>
+
+        #define I2C_ADDR    0x27
+        #define LCD_COLUMNS 20
+        #define LCD_LINES   4
+
+        LiquidCrystal_I2C lcd(I2C_ADDR, LCD_COLUMNS, LCD_LINES);
+
+        void setup() {
+          lcd.init();
+          lcd.backlight();
+          lcd.setCursor(3, 0);
+          lcd.print("Simulator");
+        }
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 3
+    width: full
+    height: huge
+  - url: https://cross-lab-project.github.io/edrys_module-avr8js/index.html
+    config:
+      modules: |
+        <wokwi-lcd1602></wokwi-lcd1602>
+        <span id='simulation-time'></span>
+      execute: execute
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 3
+    width: half
     height: medium
