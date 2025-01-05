@@ -35,12 +35,12 @@ modules:
 
       Wir werden nunmehr jede Woche eine neue Aufgabe für Sie freischalten.
 
-       Wir haben uns für eine Remote-Lösung entschieden da die Aufbauten Schritt 
-       für Schritt immer aufwändiger werden. Entsprechend erlaubt uns der Webzugriff 
+       Wir haben uns für eine Remote-Lösung entschieden, da die Aufbauten Schritt 
+       für Schritt der Labore immer aufwändiger werden. Entsprechend erlaubt uns der Webzugriff 
        einen ressourcensparenden und zeiteffizienten Einsatz der Setups. Die Umsetzung
        ist Bestandteil eines Forschungsprojektes und wir freuen uns über Ihr Feedback.
 
-      > Die Aufgabenstellung umfasst zwei Aufgabenkomplexe A und B. Der Bereich 
+       > Die Aufgabenstellung umfasst zwei Aufgabenkomplexe A und B. Der Bereich 
        A) richtet sich insbesondere an Studierende
        mit bislang wenig  ausgeprägter Programmiererfahrung. Studierende, die mit dem 
        Mikrocontroller vertraut sind, nutzen diese Aufgabe um Ihre Fähigkeiten mit dem 
@@ -54,34 +54,34 @@ modules:
 
       wenden.
         
-      Für beide Aufgabenkomplexe eräutert Raum 1 die Fragestellungen und
+      Für beide Aufgabenkomplexe erläutert Raum 1 die Fragestellungen und
       Lernziele. Danach
 
-      sind für A) zunächst Raume 2 zu bearbeiten und für B) der Raum 3. 
+      sind für A) zunächst "Raum 2" und für B) der "Raum 3" zu bearbeiten. 
 
       Die praktische Umsetzung auf dem Laborsetup erfolgt in beiden Fällen auf
-      der Station.
-       
+      der "Station".
+
+
+      > Ihre Codeänderungen werden auf der Station anonymisiert gespeichert. Wir
+      wollen 
+
+      damit tatsächliche Problemfelder identifizieren, um damit die
+      Veranstaltung systematisch
+
+      weiterzuentwickeln. Aus den Daten
+
+      können keine Rückschlüsse auf den Teilnehmenden oder spezifika des
+      Rechners gezogen 
+
+      werden. Wenn Sie Fragen dazu haben, sprechen Sie uns gern an.
+        
       Wir freuen uns auf Ihr Feedback und Ihre Anregungen.
 
 
       _Ihr CrossLab Team_
     studentConfig: ''
-    teacherConfig: >-
-      ## Welcome for Teachers
-
-
-      > This can be used as a base laboratory to create further and more
-      elaborate labs with [edrys-Lite](https://edrys-labs.github.io).
-
-      > You are currently in the Lobby. If there is a station available you can
-      switch to it and try out the terminal.
-
-      > Otherwise, if you are in teacher-mode you can share a lab by clicking
-      onto `setting` >> `station` and then by clicking the presented link,
-
-      > which is the same as the current link, but only with the word `station`
-      instead of `classroom`.
+    teacherConfig: ''
     stationConfig: ''
     showInCustom: lobby
     width: full
@@ -144,11 +144,8 @@ modules:
       https://raw.githubusercontent.com/edrys-labs/module-markdown-it/2.0.0/index.html
     config: >-
 
-      # Remote Labor Implementierung (A und B)
-       
-      ## Aufgabenkomplex A
-
-
+      # Remote Labor (Aufgabe A)
+        
       > **Praktische Aufgabe 2**: Ergänzen Sie das Programm, die
       Implementierungen für die Funktionen `runUSmeasurement` .
 
@@ -160,6 +157,8 @@ modules:
 
 
       ![](https://www.researchgate.net/profile/Gavin-Anjitha/publication/341480237/figure/fig2/AS:892805480189952@1589872822526/Timing-Diagram-for-HC-SR04-Ultrasonic-Sensor_W640.jpg)
+
+      *Autor: Gavin Anjitha, "Obstacle avoidance robot using FPGA"*
 
         > **Praktische Aufgabe 3**:  Fügen Sie die Implementierung der Funktion  `duration2dist_cm`  hinzu.  Welche Annahmen 
         treffen Sie dabei?
@@ -215,62 +214,12 @@ modules:
       }
 
       ```
-
-
-      ## Aufgabenkomplex B
-
-
-      > **Praktische Aufgabe 2**:  Nutzen Sie die Implementierung der  
-      [NewPing](https://bitbucket.org/teckel12/arduino-new-ping/src/master/)
-      Bibliothek für die objektorientierte Ansteuerung des SRF04  Sensors.
-      Arbeiten Sie sich dazu in die Dokumentation ein und identifizieren Sie die
-      Methoden, die Sie für die Bereitstellung der Distanzmessungen in
-      unterschiedlichen Einheiten benötigen.
-
-        > **Praktische Aufgabe 3**:  Fügen Sie Ihr Konfigurationsinterface ein, so dass Sie zwischen  verschiedenen Reichweiten und Ausgabeformaten unterscheiden können. Warum ist die Reichweite ein  wichtiger Parameter?
-
-      **Initialer Code für Aufgabenkomplex B**
-
-
-      ``` cpp   InitialCode.cpp
-
-      /*
-       * Posted on https://randomnerdtutorials.com
-       * created by http://playground.arduino.cc/Code/NewPing
-      */
-
-
-      #include <NewPing.h>
-       
-      #define TRIGGER_PIN 11
-
-      #define ECHO_PIN 12
-
-      #define MAX_DISTANCE 200
-
-
-      // NewPing setup of pins and maximum distance
-
-      NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); 
-       
-      void setup() {
-         Serial.begin(9600);
-      }
-       
-      void loop() {
-         delay(50);
-         unsigned int distance = sonar.ping_cm();
-         Serial.print(distance);
-         Serial.println("cm");
-      }
-
-      ```
     studentConfig: ''
     teacherConfig: ''
     stationConfig: ''
     showInCustom: station
-    width: full
-    height: medium
+    width: half
+    height: huge
   - url: >-
       https://raw.githubusercontent.com/edrys-labs/module-markdown-it/2.0.0/index.html
     config: >-
@@ -308,11 +257,9 @@ modules:
     config:
       runCommand: execute
       language: cpp
+      synchronize: false
       editorText: |
-        // Pin-Definitionen
-        const int buttonPin = 2; // Der Pin, an dem der Button angeschlossen ist
-
-        // Variable, um den Zustand des Buttons zu speichern
+        const int buttonPin = 2;
         bool buttonPressed = false;
 
         void setup() {
@@ -331,6 +278,7 @@ modules:
               buttonPressed = false;
               Serial.println("Button released");
           }
+          delay(10);
         }
     studentConfig: ''
     teacherConfig: ''
@@ -517,3 +465,103 @@ modules:
     showInCustom: Room 3
     width: half
     height: medium
+  - url: https://edrys-labs.github.io/module-code-logger/
+    config: ''
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Station, teacher-only
+    width: full
+    height: tall
+  - url: https://edrys-labs.github.io/module-markdown-it/index.html
+    config: >-
+
+      # Remote Labor (Aufgabe B)
+          
+      > **Praktische Aufgabe 2**:  Nutzen Sie die Implementierung der  
+      [NewPing](https://bitbucket.org/teckel12/arduino-new-ping/src/master/)
+      Bibliothek für die objektorientierte Ansteuerung des SRF04  Sensors.
+      Arbeiten Sie sich dazu in die Dokumentation ein und identifizieren Sie die
+      Methoden, die Sie für die Bereitstellung der Distanzmessungen in
+      unterschiedlichen Einheiten benötigen.
+
+        > **Praktische Aufgabe 3**:  Fügen Sie Ihr Konfigurationsinterface ein, so dass Sie zwischen  verschiedenen Reichweiten und Ausgabeformaten unterscheiden können. Warum ist die Reichweite ein  wichtiger Parameter?
+
+      **Initialer Code für Aufgabenkomplex B**
+
+
+      ``` cpp   InitialCode.cpp
+
+      /*
+       * Posted on https://randomnerdtutorials.com
+       * created by http://playground.arduino.cc/Code/NewPing
+      */
+
+
+      #include <NewPing.h>
+       
+      #define TRIGGER_PIN 11
+
+      #define ECHO_PIN 12
+
+      #define MAX_DISTANCE 200
+
+
+      // NewPing setup of pins and maximum distance
+
+      NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); 
+       
+      void setup() {
+         Serial.begin(9600);
+      }
+       
+      void loop() {
+         delay(50);
+         unsigned int distance = sonar.ping_cm();
+         Serial.print(distance);
+         Serial.println("cm");
+      }
+
+      ```
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: station
+    width: half
+    height: huge
+  - url: https://edrys-labs.github.io/module-markdown-it/index.html
+    config: >-
+      # Tutorial für Studierende
+
+
+      **Einführung in die Arbeit mit den Remote-Laboren auf der Basis des
+      Edrys-Frameworks**  
+
+
+      <video
+
+      controls
+
+      src="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task1-movivation-small.mp4"
+
+      poster="https://github.com/edrys-labs/lab-tubaf-embedded-systems/blob/main/media/task-1.png?raw=true"
+
+      width="620">
+
+      Sorry, your browser doesn't support embedded videos, but don't worry, you
+      can
+
+      <a
+      href="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task1-movivation-small.mp4">download
+      it</a>
+
+      and watch it with your favorite video player!
+
+      </video>
+        
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: lobby
+    width: half
+    height: tall
