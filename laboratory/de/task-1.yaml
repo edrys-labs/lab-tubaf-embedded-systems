@@ -1,5 +1,5 @@
-id: Msw5YCj3DZzflNZTRLTr8PbUQO721rmpCxZlDqRN
-createdBy: 3bgttt8YaruEa
+id: wrFIoY73UQ8skrwj
+createdBy: 15sg55AmHTPu
 dateCreated: 1689064662293
 name: Komplexaufgabe 1 - Distanzmessung
 meta:
@@ -86,6 +86,42 @@ modules:
     showInCustom: lobby
     width: full
     height: huge
+  - url: https://edrys-labs.github.io/module-markdown-it/index.html
+    config: >-
+      # Tutorial für Studierende
+
+
+      **Einführung in die Arbeit mit den Remote-Laboren auf der Basis des
+      Edrys-Frameworks**  
+
+
+      <video
+
+      controls
+
+      src="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task1-movivation-small.mp4"
+
+      poster="https://github.com/edrys-labs/lab-tubaf-embedded-systems/blob/main/media/task-1.png?raw=true"
+
+      width="620">
+
+      Sorry, your browser doesn't support embedded videos, but don't worry, you
+      can
+
+      <a
+      href="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task1-movivation-small.mp4">download
+      it</a>
+
+      and watch it with your favorite video player!
+
+      </video>
+        
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: lobby
+    width: half
+    height: tall
   - url: https://edrys-labs.github.io/module-editor/index.html
     config:
       editorText: |
@@ -426,7 +462,7 @@ modules:
     teacherConfig: ''
     stationConfig: ''
     showInCustom: Room 3
-    width: half
+    width: full
     height: medium
   - url: https://edrys-labs.github.io/module-editor/index.html
     config:
@@ -452,26 +488,21 @@ modules:
     stationConfig: ''
     showInCustom: Room 3
     width: full
-    height: huge
-  - url: https://cross-lab-project.github.io/edrys_module-avr8js/index.html
+    height: medium
+  - url: https://edrys-labs.github.io/module-avr8js/index.html
     config:
       modules: |
+        <center>
         <wokwi-lcd1602></wokwi-lcd1602>
+        <br>
         <span id='simulation-time'></span>
+        </center>
       execute: execute
     studentConfig: ''
     teacherConfig: ''
     stationConfig: ''
     showInCustom: Room 3
     width: half
-    height: medium
-  - url: https://edrys-labs.github.io/module-code-logger/
-    config: ''
-    studentConfig: ''
-    teacherConfig: ''
-    stationConfig: ''
-    showInCustom: Station, teacher-only
-    width: full
     height: tall
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
     config: >-
@@ -529,39 +560,11 @@ modules:
     showInCustom: station
     width: half
     height: huge
-  - url: https://edrys-labs.github.io/module-markdown-it/index.html
-    config: >-
-      # Tutorial für Studierende
-
-
-      **Einführung in die Arbeit mit den Remote-Laboren auf der Basis des
-      Edrys-Frameworks**  
-
-
-      <video
-
-      controls
-
-      src="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task1-movivation-small.mp4"
-
-      poster="https://github.com/edrys-labs/lab-tubaf-embedded-systems/blob/main/media/task-1.png?raw=true"
-
-      width="620">
-
-      Sorry, your browser doesn't support embedded videos, but don't worry, you
-      can
-
-      <a
-      href="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task1-movivation-small.mp4">download
-      it</a>
-
-      and watch it with your favorite video player!
-
-      </video>
-        
+  - url: https://edrys-labs.github.io/module-code-logger/
+    config: ''
     studentConfig: ''
     teacherConfig: ''
     stationConfig: ''
-    showInCustom: lobby
-    width: half
+    showInCustom: Station, teacher-only
+    width: full
     height: tall
