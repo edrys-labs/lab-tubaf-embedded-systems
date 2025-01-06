@@ -122,222 +122,6 @@ modules:
     showInCustom: lobby
     width: half
     height: tall
-  - url: https://edrys-labs.github.io/module-editor/index.html
-    config:
-      editorText: |
-        // Kopieren Sie den für Ihren Aufgabenkomplex
-        // relevanten initalen Code aus der untenstehenden 
-        // Erläuterung heraus.
-
-         void setup()
-         {
-         }
-
-         void loop() 
-         {
-         }
-      runCommand: execute
-      language: cpp
-      theme: light
-    showInCustom: station
-    width: full
-    height: huge
-  - url: https://edrys-labs.github.io/module-station-stream/index.html
-    stationConfig:
-      video: true
-      audio: false
-    showInCustom: station
-    width: half
-    height: medium
-  - url: https://edrys-labs.github.io/module-pyxtermjs/index.html
-    stationConfig:
-      server: http://localhost:5000/pty
-      execute: execute
-      script: >
-        echo $CODE | base64 --decode > Hello.ino
-
-        arduino-cli sketch new Hello
-
-        olddir=$(pwd)
-
-        mv Hello.ino Hello
-
-        cd Hello
-
-        arduino-cli board attach -p /dev/ttyACM0 -b arduino:avr:uno
-
-        cd $olddir
-
-        arduino-cli compile Hello && arduino-cli upload -p /dev/ttyACM0 Hello &&
-        arduino-cli monitor -p /dev/ttyACM0
-      enable:
-        teacher: true
-        student: true
-    showInCustom: station
-    width: half
-    height: medium
-  - url: >-
-      https://raw.githubusercontent.com/edrys-labs/module-markdown-it/2.0.0/index.html
-    config: >-
-
-      # Remote Labor (Aufgabe A)
-        
-      > **Praktische Aufgabe 2**: Ergänzen Sie das Programm, die
-      Implementierungen für die Funktionen `runUSmeasurement` .
-
-      Gehen Sie dabei davon aus,, dass der Trigger Pin entsprechend den
-      Zeitvorgaben im nachfolgenden Diagramm gesetzt werden 
-
-      muss. Nutzen Sie für die am Simulator entwickelten Methoden für die
-      Messung des Zeitintervalls als Antwort des Sensors
-
-
-      ![](https://www.researchgate.net/profile/Gavin-Anjitha/publication/341480237/figure/fig2/AS:892805480189952@1589872822526/Timing-Diagram-for-HC-SR04-Ultrasonic-Sensor_W640.jpg)
-
-      *Autor: Gavin Anjitha, "Obstacle avoidance robot using FPGA"*
-
-        > **Praktische Aufgabe 3**:  Fügen Sie die Implementierung der Funktion  `duration2dist_cm`  hinzu.  Welche Annahmen 
-        treffen Sie dabei?
-
-      **Initialer Code für Aufgabenkomplex A**
-
-
-      ``` cpp   InitialCode.cpp
-
-      const int trigPin = 12;
-
-      const int echoPin = 11;
-
-
-      // Führt die US Messung aus, Rückgabewert ist die Zeitdauer bis 
-
-      // zum Empfang des Echos
-
-      long runUSmeasurement(int trig, int echo)
-
-      {
-            
-         return 1000;
-      }
-
-
-      float duration2dist_cm(long duration)
-
-      {
-         return 10000;
-      }
-
-
-      void setup()
-
-      {
-        Serial.begin(9600);
-        Serial.print("Los geht's");
-
-        pinMode(trigPin, OUTPUT);
-        pinMode(echoPin, INPUT);
-      }
-
-
-      void loop() {
-        long duration = runUSmeasurement(trigPin, echoPin);
-        Serial.println(duration);
-
-        // float distance = duration2dist_cm(duration);
-        // Serial.print(distance);
-        // Serial.println("cm");
-        delay(1000);
-      }
-
-      ```
-    studentConfig: ''
-    teacherConfig: ''
-    stationConfig: ''
-    showInCustom: station
-    width: half
-    height: huge
-  - url: >-
-      https://raw.githubusercontent.com/edrys-labs/module-markdown-it/2.0.0/index.html
-    config: >-
-      # Simulatorübung Aufgabenkomplex A)
-
-
-      Der Ultraschallsensor kommuniziert mit dem Mikrocontroller über eine
-      Abfolge von Spannungswechseln. Darin wird der Start einer Messung genauso
-      kommuniziert, wie die Zeitdauer bis zum Empfang des Echos. Entsprechend
-      müssen wir uns zunächst damit beschäftigen die Flankenwechsel in den
-      Signalverläufen zu erkennen und die zugehörigen Zeitfenster zu vermessen.
-
-
-      Wir nehmen an, dass am Pin 2 des Mikrocontrollers ein Button befestigt
-      ist. Das nebenstehende Programm wertet dessen Zustand aus und signalisiert
-      dessen Wechsel.  
-
-
-      > **Praktische Aufgabe 1**: Ergänzen Sie das Programm, um eine
-      Zeitmessung, um zu erfassen wie lange der Button gedrückt wurde. 
-
-
-      >  **Konzeptionelle Aufgabe 1**: Betrachten Sie dabei in der
-      [Dokumentation](https://docs.arduino.cc/language-reference/de/funktionen/time/millis/)
-      die unterschiedlichen Möglichkeiten  der Zeitmessung mit `millis()` und
-      `micros()`. Begründen Sie quantitativ warum welche Funktion mit Blick auf
-      den Einsatz mit dem Ultraschallsensor genutzt werden sollte.
-    studentConfig: ''
-    teacherConfig: ''
-    stationConfig: ''
-    showInCustom: Room 2
-    width: half
-    height: medium
-  - url: https://edrys-labs.github.io/module-editor/index.html
-    config:
-      runCommand: execute
-      language: cpp
-      synchronize: false
-      editorText: |
-        const int buttonPin = 2;
-        bool buttonPressed = false;
-
-        void setup() {
-          pinMode(buttonPin, INPUT);
-          Serial.begin(9600);
-        }
-
-        void loop() {
-          int buttonState = digitalRead(buttonPin);
-
-          if (buttonState==HIGH && buttonPressed == false){
-              buttonPressed = true;
-              Serial.println("Button pressed");
-          }
-          if (buttonState==LOW && buttonPressed == true){
-              buttonPressed = false;
-              Serial.println("Button released");
-          }
-          delay(10);
-        }
-    studentConfig: ''
-    teacherConfig: ''
-    stationConfig: ''
-    showInCustom: Room 2
-    width: full
-    height: huge
-  - url: https://edrys-labs.github.io/module-avr8js/index.html
-    config:
-      modules: >
-        <wokwi-led color='green'   pin='3' label='Pin 3'></wokwi-led>
-
-        <wokwi-pushbutton color='green'   pin='2' label='Pin
-        2'></wokwi-pushbutton>
-
-        <span id='simulation-time'></span>
-      execute: execute
-    studentConfig: ''
-    teacherConfig: ''
-    stationConfig: ''
-    showInCustom: Room 2
-    width: half
-    height: medium
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
     config: >-
       # Aufgabeninhalt
@@ -445,6 +229,88 @@ modules:
     showInCustom: Room 1
     width: half
     height: tall
+  - url: >-
+      https://raw.githubusercontent.com/edrys-labs/module-markdown-it/2.0.0/index.html
+    config: >-
+      # Simulatorübung Aufgabenkomplex A)
+
+
+      Der Ultraschallsensor kommuniziert mit dem Mikrocontroller über eine
+      Abfolge von Spannungswechseln. Darin wird der Start einer Messung genauso
+      kommuniziert, wie die Zeitdauer bis zum Empfang des Echos. Entsprechend
+      müssen wir uns zunächst damit beschäftigen die Flankenwechsel in den
+      Signalverläufen zu erkennen und die zugehörigen Zeitfenster zu vermessen.
+
+
+      Wir nehmen an, dass am Pin 2 des Mikrocontrollers ein Button befestigt
+      ist. Das nebenstehende Programm wertet dessen Zustand aus und signalisiert
+      dessen Wechsel.  
+
+
+      > **Praktische Aufgabe 1**: Ergänzen Sie das Programm, um eine
+      Zeitmessung, um zu erfassen wie lange der Button gedrückt wurde. 
+
+
+      >  **Konzeptionelle Aufgabe 1**: Betrachten Sie dabei in der
+      [Dokumentation](https://docs.arduino.cc/language-reference/de/funktionen/time/millis/)
+      die unterschiedlichen Möglichkeiten  der Zeitmessung mit `millis()` und
+      `micros()`. Begründen Sie quantitativ warum welche Funktion mit Blick auf
+      den Einsatz mit dem Ultraschallsensor genutzt werden sollte.
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 2
+    width: half
+    height: medium
+  - url: https://edrys-labs.github.io/module-editor/index.html
+    config:
+      runCommand: execute
+      language: cpp
+      synchronize: false
+      editorText: |
+        const int buttonPin = 2;
+        bool buttonPressed = false;
+
+        void setup() {
+          pinMode(buttonPin, INPUT);
+          Serial.begin(9600);
+        }
+
+        void loop() {
+          int buttonState = digitalRead(buttonPin);
+
+          if (buttonState==HIGH && buttonPressed == false){
+              buttonPressed = true;
+              Serial.println("Button pressed");
+          }
+          if (buttonState==LOW && buttonPressed == true){
+              buttonPressed = false;
+              Serial.println("Button released");
+          }
+          delay(10);
+        }
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 2
+    width: full
+    height: huge
+  - url: https://edrys-labs.github.io/module-avr8js/index.html
+    config:
+      modules: >
+        <wokwi-led color='green'   pin='3' label='Pin 3'></wokwi-led>
+
+        <wokwi-pushbutton color='green'   pin='2' label='Pin
+        2'></wokwi-pushbutton>
+
+        <span id='simulation-time'></span>
+      execute: execute
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 2
+    width: half
+    height: medium
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
     config: >-
       # Simulatorübung Aufgabenkomplex B
@@ -467,6 +333,7 @@ modules:
   - url: https://edrys-labs.github.io/module-editor/index.html
     config:
       runCommand: execute
+      synchronize: false
       language: cpp
       editorText: |
         #include <LiquidCrystal_I2C.h>
@@ -504,6 +371,131 @@ modules:
     showInCustom: Room 3
     width: half
     height: tall
+  - url: https://edrys-labs.github.io/module-editor/index.html
+    config:
+      runCommand: execute
+      theme: light
+      editorText: |
+        // Kopieren Sie den für Ihren Aufgabenkomplex
+        // relevanten initalen Code aus der untenstehenden 
+        // Erläuterung heraus.
+
+         void setup()
+         {
+         }
+
+         void loop() 
+         {
+         }
+    showInCustom: station
+    width: full
+    height: medium
+  - url: https://edrys-labs.github.io/module-station-stream/index.html
+    stationConfig:
+      video: true
+      audio: false
+    showInCustom: station
+    width: half
+    height: medium
+  - url: https://edrys-labs.github.io/module-pyxtermjs/index.html
+    stationConfig:
+      server: http://localhost:5000/pty
+      execute: execute
+      script: |
+        echo $CODE | base64 --decode > Hello.ino
+        arduino-cli sketch new Hello
+        olddir=$(pwd)
+        mv Hello.ino Hello
+        cd Hello
+        arduino-cli board attach -p /dev/ttyACM0 -b arduino:avr:uno
+        cd $olddir
+        arduino-cli compile Hello && arduino-cli upload -p /dev/ttyACM0 Hello
+      enable:
+        teacher: true
+        student: true
+    showInCustom: station
+    width: half
+    height: medium
+  - url: >-
+      https://raw.githubusercontent.com/edrys-labs/module-markdown-it/2.0.0/index.html
+    config: >-
+
+      # Remote Labor (Aufgabe A)
+        
+      > **Praktische Aufgabe 2**: Ergänzen Sie das Programm, die
+      Implementierungen für die Funktionen `runUSmeasurement` .
+
+      Gehen Sie dabei davon aus,, dass der Trigger Pin entsprechend den
+      Zeitvorgaben im nachfolgenden Diagramm gesetzt werden 
+
+      muss. Nutzen Sie für die am Simulator entwickelten Methoden für die
+      Messung des Zeitintervalls als Antwort des Sensors
+
+
+      ![](https://www.researchgate.net/profile/Gavin-Anjitha/publication/341480237/figure/fig2/AS:892805480189952@1589872822526/Timing-Diagram-for-HC-SR04-Ultrasonic-Sensor_W640.jpg)
+
+      *Autor: Gavin Anjitha, "Obstacle avoidance robot using FPGA"*
+
+        > **Praktische Aufgabe 3**:  Fügen Sie die Implementierung der Funktion  `duration2dist_cm`  hinzu.  Welche Annahmen 
+        treffen Sie dabei?
+
+      **Initialer Code für Aufgabenkomplex A**
+
+
+      ``` cpp   InitialCode.cpp
+
+      const int trigPin = 12;
+
+      const int echoPin = 11;
+
+
+      // Führt die US Messung aus, Rückgabewert ist die Zeitdauer bis 
+
+      // zum Empfang des Echos
+
+      long runUSmeasurement(int trig, int echo)
+
+      {
+            
+         return 1000;
+      }
+
+
+      float duration2dist_cm(long duration)
+
+      {
+         return 10000;
+      }
+
+
+      void setup()
+
+      {
+        Serial.begin(9600);
+        Serial.print("Los geht's");
+
+        pinMode(trigPin, OUTPUT);
+        pinMode(echoPin, INPUT);
+      }
+
+
+      void loop() {
+        long duration = runUSmeasurement(trigPin, echoPin);
+        Serial.println(duration);
+
+        // float distance = duration2dist_cm(duration);
+        // Serial.print(distance);
+        // Serial.println("cm");
+        delay(1000);
+      }
+
+      ```
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: station
+    width: half
+    height: huge
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
     config: >-
 
