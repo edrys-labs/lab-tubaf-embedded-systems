@@ -560,6 +560,6 @@ modules:
     studentConfig: ''
     teacherConfig: ''
     stationConfig: ''
-    showInCustom: Station, teacher-only
+    showInCustom: station, station-only
     width: full
     height: tall
