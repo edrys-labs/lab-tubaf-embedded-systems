@@ -350,6 +350,9 @@ modules:
           lcd.setCursor(3, 0);
           lcd.print("Simulator");
         }
+
+        void loop() {
+        }
     studentConfig: ''
     teacherConfig: ''
     stationConfig: ''
