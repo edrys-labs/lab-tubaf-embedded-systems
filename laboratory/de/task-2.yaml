@@ -25,46 +25,61 @@ modules:
       Liebe Teilnehmerinnen und Teilnehmer,
 
 
-
-      dies ist die erste Komplexaufgabe, die Ihnen Gelegenheit geben soll, sich
-      zusätzlich zu den
-
-      praktischen Übungen mit den Grundlagen der Programmierung eingebetteter
-      Systeme vertraut zu machen.
-
-      Wir werden nunmehr jede Woche eine neue Aufgabe für Sie freischalten.
-
-      Die Aufgaben sind so konzipiert, dass Sie die Lösung selbstständig
-      erarbeiten können.
-
-      Sollten Sie dennoch Fragen haben, können Sie sich gerne an die Betreuer
-      wenden.
-
+      die zweite Aufgabe baut auf den grundlegenden Konzepten der ersten auf und dient dazu, 
+      Ihr Verständnis für die Programmierung eingebetteter Systeme weiter zu vertiefen. 
 
 
       Wir haben uns für eine Remote-Lösung entschieden, da die Aufbauten
       Schritt für Schritt immer aufwändiger werden.
-
       Entsprechend erlaubt uns der Webzugriff einen ressourcensparenden und
       zeiteffizienten Einsatz der Setups.
-
       Die Umsetzung dieser Remote-Lösung ist für uns alle neu und wir bitten
       Sie daher um Verständnis, falls es zu Anfang noch zu Problemen kommen
       sollte.
 
 
-
       Noch umfasst unsere Lösung keinen Multi-User-Modus - entsprechend könnten
       Sie einen Kommilitonen ziemlich ärgern, wenn Sie ihm die Kontrolle
       entziehen.
-
       Prüfen Sie also bitte vorher, ob das Setup gerade von jemand anderem
       verwendet wird.
-
       Die „Station“ merkt sich immer den letzten Stand, verlassen Sie Ihren
       Arbeitsplatz ordentlich und kopieren sie vor dem verlassen einfach den
       Original-Code in den Editor ...
 
+
+      Die praktische Umsetzung auf dem Laborsetup erfolgt auf der “Station”.
+      Sollten Sie dennoch Fragen haben, können Sie sich gerne an die Betreuer wenden.
+
+
+      Ein kleines Video-Tutorial über die Verwendung von Edrys:
+
+
+      <video
+
+      controls
+
+      src="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task-2.mp4"
+
+      width="80%">
+
+      Sorry, your browser doesn't support embedded videos, but don't worry, you
+      can
+
+      <a
+      href="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task-2.mp4">download
+      it</a>
+
+      and watch it with your favorite video player!
+
+      </video>
+
+      > Ihre Codeänderungen werden auf der Station anonymisiert gespeichert. Wir
+      wollen 
+      damit tatsächliche Problemfelder identifizieren, um damit die
+      Veranstaltung systematisch weiterzuentwickeln. Aus den Daten
+      können keine Rückschlüsse auf den Teilnehmenden oder spezifika des
+      Rechners gezogen werden. Wenn Sie Fragen dazu haben, sprechen Sie uns gern an.
 
 
       Wir freuen uns auf Ihr Feedback und Ihre Anregungen.
@@ -73,21 +88,7 @@ modules:
       _Ihr CrossLab Team_
 
     studentConfig: ''
-    teacherConfig: >-
-      ## Welcome for Teachers
-
-
-      > This can be used as a base laboratory to create further and more
-      elaborate labs with [edrys-Lite](https://edrys-labs.github.io).
-
-      > You are currently in the Lobby. If there is a station available you can
-      switch to it and try out the terminal.
-
-      > Otherwise, if you are in teacher-mode you can share a lab by clicking
-      onto `setting` >> `station` and then by clicking the presented link,
-
-      > which is the same as the current link, but only with the word `station`
-      instead of `classroom`.
+    teacherConfig: ''
     stationConfig: ''
     showInCustom: lobby
     width: full
@@ -108,7 +109,7 @@ modules:
          }
 
          void make_scan(int start, int end, int step){
-           // Aufgabe 0: Übernehmen Sie Zeile 41 - 50 and 52 - 59
+           // Aufgabe 0: Übernehmen Sie Zeile 38 - 49 und 52 - 61
            //            in eine Funktion
            // TODO
            //
@@ -210,7 +211,7 @@ modules:
       # Komplexaufgabe 2 - Analog-Digital-Wandler
 
 
-      > Die Aufgabe 1 zielt darauf Ihre Fähigkeiten mit Blick auf die Nutzung
+      > Die Aufgabe 2 zielt darauf Ihre Fähigkeiten mit Blick auf die Nutzung
       des Analog-Digital-Wandlers zu trainieren. Dafür soll ein "Laserscanner"
       implementiert werden.
 
@@ -241,7 +242,7 @@ modules:
 
       0. Verbessern Sie zunächst die Struktur des Codes, in dem Sie die
       redundanten Codeteile in eine Funktion `make_scan` "auslagern" (siehe
-      Zeile 27 - 29).
+      Zeile 13).
 
       1. Ersetzen Sie die Konfiguration und die Durchführung der Analogen
       Messungen (`analogRead(analogPin)`) durch eine `avrlibc` Realisierung.
@@ -277,7 +278,7 @@ modules:
 
 
       void make_scan(int start, int end, int step){
-        // Aufgabe 0: Übernehmen Sie Zeile 41 - 50 and 52 - 59
+        // Aufgabe 0: Übernehmen Sie Zeile 38 - 49 und 52 - 61
         //            in eine Funktion
         // TODO
         //
@@ -291,7 +292,6 @@ modules:
         pinMode(servoPin, OUTPUT);
 
         Serial.begin(9600);
-        //Serial.println("Los geht's");
         delay(1000);
 
         Servo myservo;
@@ -338,125 +338,15 @@ modules:
 
     studentConfig: ''
     teacherConfig: ''
-    stationConfig: >-
-      ## Instructions for Station-Sharing
-
-
-      You are currently responsible for sharing a station of this lab.
-
-      You have multiple options to share a or your terminal.
-
-      Therefor we use the pyxtermjs - terminal server from:
-
-
-      https://github.com/edrys-labs/module-pyxtermjs
-
-
-      ### Using Docker
-
-
-      If you haven't done it so far, install
-      [docker](https://docs.docker.com/engine/install/).
-
-      Or, follow one of the instruction-videos for your system:
-
-
-      <details>
-
-      <summary>Install Docker on Linux</summary>
-
-      <iframe
-        style="width: 100%; aspect-ratio: 16 / 9"
-        src="https://www.youtube.com/embed/cqbh-RneBlk?si=juvUM5d2OSZ28WBv"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen></iframe>
-      </details>
-
-
-      <details>
-
-      <summary>Install Docker on Windows</summary>
-
-      <iframe
-        style="width: 100%; aspect-ratio: 16 / 9"
-        src="https://www.youtube.com/embed/WDEdRmTCSs8?si=X0agStn1akNcZLGu"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen></iframe>
-      </details>
-
-
-      <details>
-
-      <summary>Install Docker on MacOS</summary>
-
-      <iframe
-        style="width: 100%; aspect-ratio: 16 / 9"
-        src="https://www.youtube.com/embed/-EXlfSsP49A?si=OZ_l4_2hDKb6ULQ_"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen></iframe>
-      </details>
-
-
-      Then the only thing that is required is to run the following command:
-
-
-      ```bash
-
-      docker run -it -p 5000:5000 --device=/dev/ttyACM0:/dev/ttyACM0 crosslab/edrys_pyxtermjs_arduino
-
-      ```
-
-
-      This will download the pyxtermjs terminal-server from docker-hub and run
-      it in a secure environment.
-
-      It contains support for:
-
-
-      - `arduino`
-
-      - `arduino-cli`
-
-
-      ### Using Python
-
-
-      You can also share your terminal directly via Python, visit the follwing
-      project
-
-
-      https://github.com/edrys-labs/module-pyxtermjs
-
-
-      ... the easiest way is to perform the following steps:
-
-
-      ``` bash
-
-      # 1. clone the repository or download the folder manually
-
-      git clone https://github.com/edrys-labs/module-pyxtermjs
-
-
-      # 2. install all required sources
-
-      pip3 install -r requirements.txt
-
-
-      # 3. run the terminal-server
-
-      python3 -m pyxtermjs --cors True --command bash --port 5000
-
-      ```
+    stationConfig: ''
     showInCustom: station
     width: half
+    height: tall
+  - url: https://edrys-labs.github.io/module-code-logger/
+    config: ''
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: station, station-only
+    width: full
     height: tall
