@@ -12,6 +12,7 @@ meta:
     einem Hindernis vermisst. Die Daten werden zudem über die Serielle
     Schnittstelle ausgegeben und analysiert.
   selfAssign: true
+  defaultNumberOfRooms: '1'
 members:
   teacher: []
   student: []
@@ -48,6 +49,7 @@ modules:
       Original-Code in den Editor ...
 
 
+      Für die Aufgabe erläutert Raum 1 die Fragestellungen und Lernziele.
       Die praktische Umsetzung auf dem Laborsetup erfolgt auf der “Station”.
       Sollten Sie dennoch Fragen haben, können Sie sich gerne an die Betreuer wenden.
 
@@ -93,6 +95,73 @@ modules:
     showInCustom: lobby
     width: full
     height: huge
+  - url: https://edrys-labs.github.io/module-markdown-it/index.html
+    config: >-
+      # Aufgabeninhalt
+
+
+      ## Lernziele
+
+
+      * Konfiguration und Nutzung eines Analog-Digital-Wandlers ohne Arduino-Bibliotheken, mit direkten Registerzugriffen (avrlibc)
+
+      * Transformation von digitalen Spannungswerten in physikalische Größen (Distanz in cm)
+
+      * Strukturierte und wiederverwendbare Programmierung durch die Auslagerung von Codeteilen in Funktionen
+
+      * Steuerung eines Servomotors für präzise Bewegung und Positionskontrolle
+
+      * Ausgabe und Speicherung der Messergebnisse
+      
+
+      ## Aufgabenstellung
+
+      Entwickeln Sie einen Programmcode, der folgende Anforderungen erfüllt:
+
+      * implementieren Sie eine Funktion make_scan, die den Distanzsensor schrittweise von 0° bis 180° bewegt und dabei in jedem Schritt die Distanz misst
+
+      * ersetzen Sie die Funktion analogRead() durch eine direkte Konfiguration und Nutzung des Analog-Digital-Wandlers (ADC) mit avrlibc
+
+      * lesen Sie die digitalen Spannungswerte ein und transformieren Sie diese mithilfe einer Näherungsformel aus dem Sensor-Datenblatt in Distanzwerte in cm
+
+      * strukturieren Sie Ihren Code, indem Sie redundante Codeteile in Funktionen auslagern
+
+
+      ## Technische Basis
+
+      Die Umsetzung erfolgt auf einem Arduino Uno mit den folgenden Komponenten:
+
+
+      | Bautteil                | Bezeichnung | Elektrische
+      Verbindung                   |
+
+      | ----------------------- | ----------- |
+      ---------------------------------------- |
+
+      | Distanzsensor (Infrarot)      | Sharp GP2Y0A02       | 5V, GND, Signal (Pin A0) |
+
+      | Servomotor |             | PWM-Signal (Pin 9), 5V, GND    |
+
+
+      > Der Zeitaufwand für die Umsetzung der Aufgabe beträgt etwa 90 Minuten.
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 1
+    width: full
+    height: tall
+  - url: https://edrys-labs.github.io/module-markdown-it/index.html
+    config: >-
+      # Arduino Layout
+
+
+      ![ArduinoLayout](https://docs.arduino.cc/static/6ec5e4c2a6c0e9e46389d4f6dc924073/a6d36/Pinout-UNOrev3_latest.png)
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 1
+    width: half
+    height: tall
   - url: https://edrys-labs.github.io/module-editor/index.html
     config:
       editorText: |-
