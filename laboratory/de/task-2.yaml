@@ -51,6 +51,9 @@ modules:
 
       Für die Aufgabe erläutert Raum 1 die Fragestellungen und Lernziele.
       Die praktische Umsetzung auf dem Laborsetup erfolgt auf der “Station”.
+      
+      
+      Die Aufgabe ist so konzipiert, dass Sie die Lösung selbstständig erarbeiten können. 
       Sollten Sie dennoch Fragen haben, können Sie sich gerne an die Betreuer wenden.
 
 
@@ -61,7 +64,7 @@ modules:
 
       controls
 
-      src="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task-2.mp4"
+      src="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task2-motivation.webm"
 
       width="80%">
 
@@ -69,7 +72,7 @@ modules:
       can
 
       <a
-      href="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task-2.mp4">download
+      href="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task2-motivation.webm">download
       it</a>
 
       and watch it with your favorite video player!
