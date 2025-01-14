@@ -12,7 +12,7 @@ meta:
     einem Hindernis vermisst. Die Daten werden zudem über die Serielle
     Schnittstelle ausgegeben und analysiert.
   selfAssign: true
-  defaultNumberOfRooms: '1'
+  defaultNumberOfRooms: '2'
 members:
   teacher: []
   student: []
@@ -125,7 +125,7 @@ modules:
 
       * ersetzen Sie die Funktion analogRead() durch eine direkte Konfiguration und Nutzung des Analog-Digital-Wandlers (ADC) mit avrlibc
 
-      * lesen Sie die digitalen Spannungswerte ein und transformieren Sie diese mithilfe einer Näherungsformel aus dem Sensor-Datenblatt in Distanzwerte in cm
+      * lesen Sie die digitalen Spannungswerte ein und transformieren Sie diese in Distanzwerte in cm
 
       * strukturieren Sie Ihren Code, indem Sie redundante Codeteile in Funktionen auslagern
 
@@ -163,6 +163,92 @@ modules:
     teacherConfig: ''
     stationConfig: ''
     showInCustom: Room 1
+    width: half
+    height: tall
+  - url: >-
+      https://raw.githubusercontent.com/edrys-labs/module-markdown-it/2.0.0/index.html
+    config: >-
+      # Simulatorübung: Fehlerhafte ADC-Konfiguration 
+
+
+      Der ADC (Analog-Digital-Wandler) des Mikrocontrollers kommuniziert mit dem restlichen System, 
+      indem er analoge Spannungen in digitale Werte umwandelt. Dies geschieht in einer definierten Abfolge von Konfiguration, 
+      Messung und Auswertung. Damit die Messungen zuverlässig funktionieren, muss die richtige Referenzspannung eingestellt, 
+      der ADC korrekt initialisiert und die Messergebnisse korrekt interpretiert werden.
+
+
+      Wir nehmen an, dass am analogen Pin A0 des Mikrocontrollers ein Potentiometer befestigt ist. 
+      Der ADC misst die Spannung am Pin und gibt die berechneten Werte über die serielle Schnittstelle aus.
+
+
+      > **Aufgabe**: Das gegebene Programm enthält mehrere Fehler, die Sie beheben sollen. 
+        Ziel ist es, mit einem Potentiometer am ADC-Eingang (A0) Spannungswerte im Bereich 
+        von 0 bis 1.1V zu messen und diese über die serielle Schnittstelle auszugeben.
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 2
+    width: half
+    height: tall
+  - url: https://edrys-labs.github.io/module-editor/index.html
+    config:
+      runCommand: execute
+      language: cpp
+      synchronize: false
+      editorText: |
+        #include <avr/io.h>
+        #include <util/delay.h>
+
+        void adc_init() {
+            // Fehlerhafte Konfiguration: Falsche Referenzspannung (externe Referenz gewählt)
+            ADMUX = (1 << REFS0); // Nur REFS0 gesetzt, sollte interne 1.1V-Referenz sein
+
+            // Fehlerhafte Prescaler-Einstellung: Taktfrequenz zu hoch
+            ADCSRA = (1 << ADEN) | (1 << ADPS1); // Prescaler auf 8, ADC läuft zu schnell
+        }
+
+        uint16_t adc_read(uint8_t channel) {
+            // Fehlerhafte Kanalwahl: Kanal über 7 wird nicht verhindert
+            ADMUX = (ADMUX & 0xF8) | channel;
+
+            ADCSRA |= (1 << ADSC); 
+            while (!(ADCSRA & (1 << ADIF))); // Wartet auf falsches Flag
+            return ADC; // Liefert ungenaue Werte
+        }
+
+        void setup() {
+            Serial.begin(9600);
+            adc_init();
+        }
+
+        void loop() {
+            uint16_t adc_value = adc_read(8); // Fehler: Kanal 8 existiert nicht
+            float voltage = adc_value * (5.0 / 1023.0); // Fehlerhafte Berechnung mit falscher Referenzspannung
+
+            Serial.print("Voltage: ");
+            Serial.print(voltage, 2);
+            Serial.println(" V");
+            _delay_ms(500);
+        }
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 2
+    width: full
+    height: huge
+  - url: https://edrys-labs.github.io/module-avr8js/index.html
+    config:
+      modules: |
+        <center>
+          <wokwi-potentiometer pin="0"></wokwi-potentiometer>
+          
+          <div id='simulation-time'></div>
+        </center>
+      execute: execute
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 2
     width: half
     height: tall
   - url: https://edrys-labs.github.io/module-editor/index.html
