@@ -8,6 +8,7 @@ meta:
   description: >-
     Die Aufgabe 3 zielt darauf eine Motorsteuerung mit einer visuellen Ausgabe zu kombinieren und für die Synchronisation der beiden Komponenten einen Interrupt zu nutzen.
   selfAssign: true
+  defaultNumberOfRooms: '2'
 members:
   teacher: []
   student: []
@@ -17,37 +18,227 @@ modules:
     config: >-
       # Komplexaufgabe 3 - Interrupts
 
-      Liebe Teilnehmerinnen und Teilnehmer, analog zu den vorangegangen soll Ihnen auch diese Komplexaufgabe Gelegenheit geben sich zusätzlich zu den praktischen Übungen mit den Grundlagen der
+      Liebe Teilnehmerinnen und Teilnehmer, 
+      
+      
+      analog zu den vorangegangen soll Ihnen auch diese Komplexaufgabe Gelegenheit geben sich zusätzlich zu den praktischen Übungen mit den Grundlagen der
       Programmierung eingebetteter Systeme vertraut zu machen.
-      Sollten Sie Fragen haben, können Sie sich gerne an das Team wenden.
+      
+      
+      Die Aufgabe ist so konzipiert, dass Sie die Lösung selbstständig erarbeiten können. 
+      Sollten Sie dennoch Fragen haben, können Sie sich gerne an die Betreuer wenden.
 
-      Noch umfasst unsere Lösung keinen Multi-User-Modus - entsprechend könnten Sie einen Kommilitonen ziemlich ärgern, wenn Sie ihm die Kontrolle entziehen.
-      Prüfen Sie also bitte vorher, ob das Setup gerade von jemand anderem verwendet wird.
-      Die „Station“ merkt sich immer den letzten Stand, verlassen Sie Ihren Arbeitsplatz ordentlich und kopieren sie vor dem verlassen einfach den Original-Code in den Editor …
+
+      Für die Aufgabe erläutert Raum 1 die Fragestellungen und Lernziele.
+      Danach ist in Raum 2 eine Simulatorübung zur Fehlerbehebung vorgesehen.
+      Die praktische Umsetzung auf dem Laborsetup erfolgt auf der “Station”.
+
+
+      Noch umfasst unsere Lösung keinen Multi-User-Modus - entsprechend könnten Sie einen Kommilitonen ziemlich ärgern, 
+      wenn Sie ihm die Kontrolle entziehen. Prüfen Sie also bitte vorher, ob das Setup gerade von jemand anderem verwendet wird.
+      Die „Station“ merkt sich immer den letzten Stand, 
+      verlassen Sie Ihren Arbeitsplatz ordentlich und kopieren sie vor dem verlassen einfach den Original-Code in den Editor…
+
+
+      Ein kleines Video-Tutorial über die Verwendung von Edrys:
+
+
+      <video
+
+      controls
+
+      src="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task2-motivation.webm"
+
+      width="100%">
+
+      Sorry, your browser doesn't support embedded videos, but don't worry, you
+      can
+
+      <a
+      href="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task2-motivation.webm">download
+      it</a>
+
+      and watch it with your favorite video player!
+
+      </video>
+
+      > Ihre Codeänderungen werden auf der Station anonymisiert gespeichert. Wir
+      wollen damit tatsächliche Problemfelder identifizieren, um damit die
+      Veranstaltung systematisch weiterzuentwickeln. Aus den Daten
+      können keine Rückschlüsse auf den Teilnehmenden oder spezifika des
+      Rechners gezogen werden. Wenn Sie Fragen dazu haben, sprechen Sie uns gern an.
+
 
       Wir freuen uns auf Ihr Feedback und Ihre Anregungen.
 
+
       _Ihr CrossLab Team_
     studentConfig: ''
-    teacherConfig: >-
-      ## Welcome for Teachers
-
-
-      > This can be used as a base laboratory to create further and more
-      elaborate labs with [edrys-Lite](https://edrys-labs.github.io).
-
-      > You are currently in the Lobby. If there is a station available you can
-      switch to it and try out the terminal.
-
-      > Otherwise, if you are in teacher-mode you can share a lab by clicking
-      onto `setting` >> `station` and then by clicking the presented link,
-
-      > which is the same as the current link, but only with the word `station`
-      instead of `classroom`.
+    teacherConfig: ''
     stationConfig: ''
     showInCustom: lobby
     width: full
     height: huge
+  - url: https://edrys-labs.github.io/module-markdown-it/index.html
+    config: >-
+      # Aufgabeninhalt
+
+
+      ## Lernziele
+
+
+      * Konfiguration und Nutzung von Interrupts zur Erkennung und Reaktion auf externe Ereignisse
+
+      * Steuerung eines Schrittmotors mit präziser Positionsbestimmung
+
+      * Visualisierung der Motorposition auf einem LED-Ring
+
+      * Nutzung globaler Variablen mit volatile zur Synchronisation zwischen Hauptprogramm und Interrupt-Service-Routine
+
+      * Strukturierung des Programmcodes durch Auslagerung wiederverwendbarer Funktionen
+      
+
+      ## Aufgabenstellung
+
+      Entwickeln Sie einen Programmcode, der folgende Anforderungen erfüllt:
+
+      * **Interrupt-Routine (ISR)**: implementieren Sie eine ISR, die bei einer fallenden Flanke des Sensors (Pin 2) die globale, 
+        als volatile deklarierte Variable position auf 0 setzt, wenn ein Signal detektiert wird
+
+      * **Ersatz des Polling-Ansatzes**: entfernen Sie das bisherige Polling im Hauptprogramm und ersetzen Sie es durch die ISR, 
+        um den Sensorstatus effizient zu erfassen
+
+      * **Visualisierung der Motorposition**: binden Sie den LED-Ring (24 LEDs) ein und skalieren Sie den Positionswert position auf den Wertebereich des LED-Rings, 
+        um die aktuelle Motorposition anzuzeigen
+
+      * **Ansteuerung des Schrittmotors**: steuern Sie einen Schrittmotor (2048 Schritte/Umdrehung) für 3 volle Umdrehungen an und synchronisieren Sie die LED-Visualisierung mit der Motorbewegung
+
+
+      ## Technische Basis
+
+      Die Umsetzung erfolgt auf einem Arduino Uno mit den folgenden Komponenten:
+
+
+      | Bautteil                | Bezeichnung                 | Elektrische Verbindung       |
+
+      | ----------------------- | --------------------------- | ---------------------------- |
+
+      | Schrittmotor            | 28BYJ-48                    | Pins 8, 9, 10, 11            |
+
+      | Motortreiber            | ULN2003                     | Versorgung des Schrittmotors |
+
+      | Magnetischer Sensor     | Hall-Sensor                 | Pin 2, 5V, GND               |
+
+      | LED-Ring                | Adafruit NeoPixel (24 LEDs) | Pin 3, 5V, GND               |
+
+
+      > Der Zeitaufwand für die Umsetzung der Aufgabe beträgt etwa 90 Minuten.
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 1
+    width: full
+    height: tall
+  - url: https://edrys-labs.github.io/module-markdown-it/index.html
+    config: >-
+      # Arduino Layout
+
+
+      ![ArduinoLayout](https://docs.arduino.cc/static/6ec5e4c2a6c0e9e46389d4f6dc924073/a6d36/Pinout-UNOrev3_latest.png)
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 1
+    width: half
+    height: tall
+  - url: >-
+      https://raw.githubusercontent.com/edrys-labs/module-markdown-it/2.0.0/index.html
+    config: >-
+      # Simulatorübung: Fehlerhafte Interrupt-Steuerung
+
+      Interrupts ermöglichen es einem Mikrocontroller, sofort auf externe Ereignisse zu reagieren, 
+      ohne ständig die entsprechenden Pins abzufragen. Dies ist besonders nützlich für zeitkritische Anwendungen wie das Umschalten von Zuständen bei einem Tasterdruck.
+
+
+      In dieser Übung verwenden wir einen Taster an Pin 2, um die LED an Pin 13 ein- und auszuschalten. 
+      Ein Interrupt soll dafür sorgen, dass die LED bei jedem Tasterdruck ihren Zustand wechselt. 
+      Die gegebenen Codefragmente enthalten jedoch Fehler, die behoben werden müssen.
+
+
+      > **Aufgabe**: Korrigieren Sie die Fehler in den Codefragmenten, um den Interrupt korrekt zu konfigurieren und die LED bei jedem Tasterdruck umzuschalten.
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 2
+    width: half
+    height: tall
+  - url: https://edrys-labs.github.io/module-editor/index.html
+    config:
+      runCommand: execute
+      language: cpp
+      synchronize: false
+      editorText: |
+        #define BUTTON_PIN 2 // Der Pin, an dem der Taster angeschlossen ist 
+        #define LED_PIN 13   // Die eingebaute LED 
+
+        volatile bool ledState = false;     // Variable zur Steuerung der LED
+        unsigned long lastInterruptTime = 0; // Speichert den letzten Interrupt-Zeitpunkt
+
+        void setup() {
+          pinMode(LED_PIN, OUTPUT);           // LED-Pin konfigurieren
+          pinMode(BUTTON_PIN, INPUT);         // Taster-Pin ohne Pullup konfigurieren (Fehler: kein Pullup-Widerstand)
+
+          attachInterrupt(BUTTON_PIN, toggleLED, FALLING); // Fehler: falsche Funktion Argumente
+
+          Serial.begin(9600);
+
+          digitalWrite(LED_PIN, HIGH);        // LED initial eingeschaltet (Fehler: sollte LOW sein)
+        }
+
+        void loop() {
+          if (ledState) {                     // Fehler: Kontrolliert LED-Zustand außerhalb des Interrupts
+            digitalWrite(LED_PIN, HIGH);
+          } else {
+            digitalWrite(LED_PIN, LOW);
+          }
+        }
+
+        // Interrupt-Service-Routine (ISR) ohne Entprellung
+        void toggleLED() {
+            ledState = !ledState;               // Zustand der LED umschalten
+            digitalWrite(LED_PIN, ledState);    // LED ein- oder ausschalten
+            Serial.print("LED: ");
+            if (ledState) {
+              Serial.println("ON");
+            } else {
+              Serial.println("OFF");
+            }
+            lastInterruptTime = millis();       // Fehler: Entprell-Logik fehlt
+        }
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 2
+    width: full
+    height: huge
+  - url: https://edrys-labs.github.io/module-avr8js/index.html
+    config:
+      modules: |
+        <center>
+          <wokwi-led color='red' pin='13' label='Pin 13'></wokwi-led>
+
+          <wokwi-pushbutton color='green'   pin='2' label='Pin
+          2'></wokwi-pushbutton>
+          
+          <div id='simulation-time'></div>
+        </center>
+      execute: execute
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 2
+    width: half
+    height: tall
   - url: https://edrys-labs.github.io/module-editor/index.html
     config:
       runCommand: execute
@@ -277,125 +468,15 @@ modules:
       ```
     studentConfig: ''
     teacherConfig: ''
-    stationConfig: >-
-      ## Instructions for Station-Sharing
-
-
-      You are currently responsible for sharing a station of this lab.
-
-      You have multiple options to share a or your terminal.
-
-      Therefor we use the pyxtermjs - terminal server from:
-
-
-      https://github.com/edrys-labs/module-pyxtermjs
-
-
-      ### Using Docker
-
-
-      If you haven't done it so far, install
-      [docker](https://docs.docker.com/engine/install/).
-
-      Or, follow one of the instruction-videos for your system:
-
-
-      <details>
-
-      <summary>Install Docker on Linux</summary>
-
-      <iframe
-        style="width: 100%; aspect-ratio: 16 / 9"
-        src="https://www.youtube.com/embed/cqbh-RneBlk?si=juvUM5d2OSZ28WBv"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen></iframe>
-      </details>
-
-
-      <details>
-
-      <summary>Install Docker on Windows</summary>
-
-      <iframe
-        style="width: 100%; aspect-ratio: 16 / 9"
-        src="https://www.youtube.com/embed/WDEdRmTCSs8?si=X0agStn1akNcZLGu"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen></iframe>
-      </details>
-
-
-      <details>
-
-      <summary>Install Docker on MacOS</summary>
-
-      <iframe
-        style="width: 100%; aspect-ratio: 16 / 9"
-        src="https://www.youtube.com/embed/-EXlfSsP49A?si=OZ_l4_2hDKb6ULQ_"
-        title="YouTube video player"
-        frameborder="0"
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-        referrerpolicy="strict-origin-when-cross-origin"
-        allowfullscreen></iframe>
-      </details>
-
-
-      Then the only thing that is required is to run the following command:
-
-
-      ```bash
-
-      docker run -it -p 5000:5000 --device=/dev/ttyACM0:/dev/ttyACM0 crosslab/edrys_pyxtermjs_arduino
-
-      ```
-
-
-      This will download the pyxtermjs terminal-server from docker-hub and run
-      it in a secure environment.
-
-      It contains support for:
-
-
-      - `arduino`
-
-      - `arduino-cli`
-
-
-      ### Using Python
-
-
-      You can also share your terminal directly via Python, visit the follwing
-      project
-
-
-      https://github.com/edrys-labs/module-pyxtermjs
-
-
-      ... the easiest way is to perform the following steps:
-
-
-      ``` bash
-
-      # 1. clone the repository or download the folder manually
-
-      git clone https://github.com/edrys-labs/module-pyxtermjs
-
-
-      # 2. install all required sources
-
-      pip3 install -r requirements.txt
-
-
-      # 3. run the terminal-server
-
-      python3 -m pyxtermjs --cors True --command bash --port 5000
-
-      ```
+    stationConfig: ''
     showInCustom: station
     width: half
+    height: tall
+  - url: https://edrys-labs.github.io/module-code-logger/
+    config: ''
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: station, station-only
+    width: full
     height: tall
