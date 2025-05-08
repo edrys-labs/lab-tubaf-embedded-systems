@@ -17,8 +17,7 @@ members:
   teacher: []
   student: []
 modules:
-  - url: >-
-      https://raw.githubusercontent.com/edrys-labs/module-markdown-it/2.0.0/index.html
+  - url: https://edrys-labs.github.io/module-markdown-it/index.html
     config: 
       content: >-
         # Komplexaufgabe 1 - Distanzmessung
@@ -245,8 +244,7 @@ modules:
     showInCustom: Room 1
     width: half
     height: tall
-  - url: >-
-      https://raw.githubusercontent.com/edrys-labs/module-markdown-it/2.0.0/index.html
+  - url: https://edrys-labs.github.io/module-markdown-it/index.html
     config: 
       content: >-
         # Simulatorübung Aufgabenkomplex A)
@@ -443,8 +441,7 @@ modules:
     showInCustom: station
     width: half
     height: medium
-  - url: >-
-      https://raw.githubusercontent.com/edrys-labs/module-markdown-it/2.0.0/index.html
+  - url: https://edrys-labs.github.io/module-markdown-it/index.html
     config: 
       content: >-
 
