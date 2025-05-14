@@ -91,7 +91,7 @@ modules:
     height: huge
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
     config: 
-      config: >-
+      content: >-
         # Tutorial für Studierende
 
 
