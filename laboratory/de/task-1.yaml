@@ -592,3 +592,11 @@ modules:
     showInCustom: station, station-only
     width: full
     height: tall
+  - url: https://edrys-labs.github.io/module-station-light-control/index.html
+    config: ''
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: station
+    width: third
+    height: short

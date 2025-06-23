@@ -244,12 +244,9 @@ modules:
             Serial.println(" V");
             _delay_ms(500);
         }
-    studentConfig:
-      content: ''
-    teacherConfig:
-      content: ''
-    stationConfig:
-      content: ''
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
     showInCustom: Room 2
     width: full
     height: huge
@@ -262,12 +259,9 @@ modules:
           <div id='simulation-time'></div>
         </center>
       execute: execute
-    studentConfig:
-      content: ''
-    teacherConfig:
-      content: ''
-    stationConfig:
-      content: ''
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
     showInCustom: Room 2
     width: half
     height: tall
@@ -355,10 +349,8 @@ modules:
     height: medium
   - url: https://edrys-labs.github.io/module-pyxtermjs/index.html
     config: ''
-    studentConfig:
-      content: ''
-    teacherConfig:
-      content: ''
+    studentConfig: ''
+    teacherConfig: ''
     stationConfig:
       server: http://localhost:5000/pty
       execute: execute
@@ -526,13 +518,17 @@ modules:
     height: tall
   - url: https://edrys-labs.github.io/module-code-logger/
     config:
-      content: ''
-    studentConfig:
-      content: ''
-    teacherConfig:
-      content: ''
-    stationConfig:
-      content: ''
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
     showInCustom: station, station-only
     width: full
     height: tall
+  - url: https://edrys-labs.github.io/module-station-light-control/index.html
+    config: ''
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: station
+    width: third
+    height: short
