@@ -597,6 +597,6 @@ modules:
     studentConfig: ''
     teacherConfig: ''
     stationConfig: ''
-    showInCustom: station
+    showInCustom: station, station-only
     width: third
     height: short
