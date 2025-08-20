@@ -434,7 +434,8 @@ modules:
         cd Hello
         arduino-cli board attach -p /dev/ttyACM0 -b arduino:avr:uno
         cd $olddir
-        arduino-cli compile Hello && arduino-cli upload -p /dev/ttyACM0 Hello
+        arduino-cli compile Hello && arduino-cli upload -p /dev/ttyACM0 Hello &&
+        arduino-cli monitor -p /dev/ttyACM0
       enable:
         teacher: true
         student: true
