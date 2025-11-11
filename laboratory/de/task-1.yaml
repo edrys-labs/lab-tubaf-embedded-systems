@@ -103,7 +103,7 @@ modules:
 
         controls
 
-        src="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task1-movivation-small.mp4"
+        src="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task1-motivation.webm"
 
         poster="https://github.com/edrys-labs/lab-tubaf-embedded-systems/blob/main/media/task-1.png?raw=true"
 
@@ -113,7 +113,7 @@ modules:
         can
 
         <a
-        href="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task1-movivation-small.mp4">download
+        href="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task1-motivation.webm">download
         it</a>
 
         and watch it with your favorite video player!
