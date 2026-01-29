@@ -152,7 +152,7 @@ modules:
         # Arduino Layout
 
 
-        ![ArduinoLayout](https://docs.arduino.cc/static/6ec5e4c2a6c0e9e46389d4f6dc924073/a6d36/Pinout-UNOrev3_latest.png)
+        ![ArduinoLayout](https://docs.arduino.cc/static/cb2219c4f549dd9a7fe040362b668567/a6d36/Pinout-UNOrev3_latest.png)
     studentConfig:
       content: ''
     teacherConfig:

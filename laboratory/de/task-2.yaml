@@ -166,7 +166,7 @@ modules:
         # Arduino Layout
 
 
-        ![ArduinoLayout](https://docs.arduino.cc/static/6ec5e4c2a6c0e9e46389d4f6dc924073/a6d36/Pinout-UNOrev3_latest.png)
+        ![ArduinoLayout](https://docs.arduino.cc/static/cb2219c4f549dd9a7fe040362b668567/a6d36/Pinout-UNOrev3_latest.png)
     studentConfig:
       content: ''
     teacherConfig:
@@ -270,70 +270,68 @@ modules:
       editorText: |-
         #include <Servo.h>
 
-         const int analogPin = A0;
-         const int servoPin = 9;
+        const int analogPin = A0;
+        const int servoPin = 9;
 
-         float calculate_dist_cm(float value){
-           // Aufgabe 2: Bilden Sie die digitale Spannungsrepräsentation
-           //            auf einen Abstandswert ab
-           // TODO
-           return value;
-         }
+        float calculate_dist_cm(float value){
+          // Aufgabe 2: Bilden Sie die digitale Spannungsrepräsentation
+          //            auf einen Abstandswert ab
+          // TODO
+          return value;
+        }
 
-         void make_scan(int start, int end, int step){
-           // Aufgabe 0: Übernehmen Sie Zeile 38 - 49 und 52 - 61
-           //            in eine Funktion
-           // TODO
-           //
-           // Aufgabe 1: Ersetzen Sie die Arduino AnalogRead()
-           //            Methode
-         }
+        void make_scan(int start, int end, int step){
+          // Aufgabe 0: Übernehmen Sie Zeile 38 - 49 und 52 - 61
+          //            in eine Funktion
+          // TODO
+          //
+          // Aufgabe 1: Ersetzen Sie die Arduino AnalogRead()
+          //            Methode
+        }
 
-         void setup() {
-           pinMode(analogPin, INPUT);
-           pinMode(servoPin, OUTPUT);
+        void setup() {
+          pinMode(analogPin, INPUT);
+          pinMode(servoPin, OUTPUT);
 
-           Serial.begin(9600);
-           //Serial.println("Los geht's");
-           delay(1000);
+          Serial.begin(9600);
+          delay(1000);
 
-           Servo myservo;
-           myservo.attach(servoPin);
+          Servo myservo;
+          myservo.attach(servoPin);
 
-           float val_v = 0;
-           float val_cm = 0;
+          float val_v = 0;
+          float val_cm = 0;
 
-           Serial.print("rechts:");
-           int pos = 0;
-           for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
-             // in steps of 1 degree
-             // Aufgabe 0: Prozedurale Umsetzung eines Schrittes
-             myservo.write(pos);
-             delay(15);
-             val_v = analogRead(analogPin);
-             val_cm = calculate_dist_cm(val_v);
-             Serial.print(pos);
-             Serial.print(",");
-             Serial.print(val_cm);
-             Serial.print(";");
-           }
-           Serial.println("");
-           Serial.print("links:");
-           for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
-             myservo.write(pos);
-             delay(15);
-             val_v = analogRead(analogPin);
-             val_cm = calculate_dist_cm(val_v);
-             Serial.print(pos);
-             Serial.print(",");
-             Serial.print(val_cm);
-             Serial.print(";");
-           }
-           Serial.println("");
-         }
+          // Scan right
+          int pos = 0;
+          for (pos = 0; pos <= 180; pos += 1) {
+            myservo.write(pos);
+            delay(15);
+            val_v = analogRead(analogPin);
+            val_cm = calculate_dist_cm(val_v);
+            
+            Serial.print("position:");
+            Serial.print(pos);
+            Serial.print(",distance:");
+            Serial.println(val_cm);
+          }
+          
+          // Scan left
+          for (pos = 180; pos >= 0; pos -= 1) {
+            myservo.write(pos);
+            delay(15);
+            val_v = analogRead(analogPin);
+            val_cm = calculate_dist_cm(val_v);
+            
+            Serial.print("position:");
+            Serial.print(pos);
+            Serial.print(",distance:");
+            Serial.println(val_cm);
+          }
+        }
 
-         void loop(){
-         }
+        void loop(){
+        }
       runCommand: execute
       language: cpp
       theme: light
@@ -472,33 +470,32 @@ modules:
           float val_v = 0;
           float val_cm = 0;
 
-          Serial.print("rechts:");
+          // Scan right
           int pos = 0;
-          for (pos = 0; pos <= 180; pos += 1) { // goes from 0 degrees to 180 degrees
-            // in steps of 1 degree
-            // Aufgabe 0: Prozedurale Umsetzung eines Schrittes
+          for (pos = 0; pos <= 180; pos += 1) {
             myservo.write(pos);
             delay(15);
             val_v = analogRead(analogPin);
             val_cm = calculate_dist_cm(val_v);
+            
+            Serial.print("position:");
             Serial.print(pos);
-            Serial.print(",");
-            Serial.print(val_cm);
-            Serial.print(";");
+            Serial.print(",distance:");
+            Serial.println(val_cm);
           }
-          Serial.println("");
-          Serial.print("links:");
-          for (pos = 180; pos >= 0; pos -= 1) { // goes from 180 degrees to 0 degrees
+          
+          // Scan left
+          for (pos = 180; pos >= 0; pos -= 1) {
             myservo.write(pos);
             delay(15);
             val_v = analogRead(analogPin);
             val_cm = calculate_dist_cm(val_v);
+            
+            Serial.print("position:");
             Serial.print(pos);
-            Serial.print(",");
-            Serial.print(val_cm);
-            Serial.print(";");
+            Serial.print(",distance:");
+            Serial.println(val_cm);
           }
-          Serial.println("");
         }
 
 
