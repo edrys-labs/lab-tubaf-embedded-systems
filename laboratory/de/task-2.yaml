@@ -223,12 +223,13 @@ modules:
     width: half
     height: tall
     id: 250131e1-e99d-483f-b504-b30890e1d4ae
-  - url: https://edrys-labs.github.io/module-editor/index.html
+  - url: https://edrys-labs.github.io/module-monaco-editor/
     config:
       runCommand: execute
       language: cpp
       synchronize: false
-      editorText: |
+      showLanguageSelector: true
+      value: |
         #include <avr/io.h>
         #include <util/delay.h>
 

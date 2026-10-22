@@ -213,10 +213,10 @@ modules:
     width: half
     height: tall
     id: e98b099b-ab82-45bc-a40a-c396bcf072fc
-  - url: https://edrys-labs.github.io/module-editor/index.html
+  - url: https://edrys-labs.github.io/module-monaco-editor/
     config:
       editorId: ''
-      editorText: |
+      value: |
         #define BUTTON_PIN 2 // Der Pin, an dem der Taster angeschlossen ist 
         #define LED_PIN 13   // Die eingebaute LED 
 

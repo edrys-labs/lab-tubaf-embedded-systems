@@ -292,12 +292,13 @@ modules:
     width: half
     height: medium
     id: 16fb596d-3df2-4476-b39e-4c581b82cfe2
-  - url: https://edrys-labs.github.io/module-editor/index.html
+  - url: https://edrys-labs.github.io/module-monaco-editor/
     config:
       runCommand: execute
       language: cpp
       synchronize: false
-      editorText: |
+      showLanguageSelector: true
+      value: |
         const int buttonPin = 2;
         bool buttonPressed = false;
 
@@ -367,12 +368,13 @@ modules:
     width: full
     height: medium
     id: 68bb43ee-1370-407c-aa30-0124f9fa72b2
-  - url: https://edrys-labs.github.io/module-editor/index.html
+  - url: https://edrys-labs.github.io/module-monaco-editor/
     config:
       runCommand: execute
       synchronize: false
+      showLanguageSelector: true
       language: cpp
-      editorText: |
+      value: |
         #include <LiquidCrystal_I2C.h>
 
         #define I2C_ADDR    0x27
