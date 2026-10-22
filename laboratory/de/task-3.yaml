@@ -1,12 +1,15 @@
-id: p4mG8UQd3ozMCs4NEqsgLjME8hL7jN40mgr6PyIS
-createdBy: erf3ktYZevr4
+id: sEHRNUR9TnhA8wYs
+createdBy: >-
+  BMc+QIQD5VAVHP2v/0DyhCE/LnGr/liNheFhay/HvQ3d29v0z59C9kD+AXZzWagCGFKSWrh1A4jprKj4qJlrU0M=
 dateCreated: 1689064662293
 name: Komplexaufgabe 3 - Interrupts
 meta:
   logo: >-
     https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_EAVD/master/excercise/images/excercise_04.png
   description: >-
-    Die Aufgabe 3 zielt darauf eine Motorsteuerung mit einer visuellen Ausgabe zu kombinieren und für die Synchronisation der beiden Komponenten einen Interrupt zu nutzen.
+    Die Aufgabe 3 zielt darauf eine Motorsteuerung mit einer visuellen Ausgabe
+    zu kombinieren und für die Synchronisation der beiden Komponenten einen
+    Interrupt zu nutzen.
   selfAssign: true
   defaultNumberOfRooms: '2'
 members:
@@ -19,14 +22,16 @@ modules:
         # Komplexaufgabe 3 - Interrupts
 
         Liebe Teilnehmerinnen und Teilnehmer, 
-        
-        
-        analog zu den vorangegangen soll Ihnen auch diese Komplexaufgabe Gelegenheit geben sich zusätzlich zu den praktischen Übungen mit den Grundlagen der
-        Programmierung eingebetteter Systeme vertraut zu machen.
-        
-        
-        Die Aufgabe ist so konzipiert, dass Sie die Lösung selbstständig erarbeiten können. 
-        Sollten Sie dennoch Fragen haben, können Sie sich gerne an die Betreuer wenden.
+
+
+        analog zu den vorangegangen soll Ihnen auch diese Komplexaufgabe
+        Gelegenheit geben sich zusätzlich zu den praktischen Übungen mit den
+        Grundlagen der Programmierung eingebetteter Systeme vertraut zu machen.
+
+
+        Die Aufgabe ist so konzipiert, dass Sie die Lösung selbstständig
+        erarbeiten können.  Sollten Sie dennoch Fragen haben, können Sie sich
+        gerne an die Betreuer wenden.
 
 
         Für die Aufgabe erläutert Raum 1 die Fragestellungen und Lernziele.
@@ -34,10 +39,12 @@ modules:
         Die praktische Umsetzung auf dem Laborsetup erfolgt auf der "Station".
 
 
-        Noch umfasst unsere Lösung keinen Multi-User-Modus - entsprechend könnten Sie einen Kommilitonen ziemlich ärgern, 
-        wenn Sie ihm die Kontrolle entziehen. Prüfen Sie also bitte vorher, ob das Setup gerade von jemand anderem verwendet wird.
-        Die „Station" merkt sich immer den letzten Stand, 
-        verlassen Sie Ihren Arbeitsplatz ordentlich und kopieren sie vor dem verlassen einfach den Original-Code in den Editor…
+        Noch umfasst unsere Lösung keinen Multi-User-Modus - entsprechend
+        könnten Sie einen Kommilitonen ziemlich ärgern,  wenn Sie ihm die
+        Kontrolle entziehen. Prüfen Sie also bitte vorher, ob das Setup gerade
+        von jemand anderem verwendet wird. Die „Station" merkt sich immer den
+        letzten Stand,  verlassen Sie Ihren Arbeitsplatz ordentlich und kopieren
+        sie vor dem verlassen einfach den Original-Code in den Editor…
 
 
         Ein kleines Video-Tutorial über die Verwendung von Edrys:
@@ -51,8 +58,8 @@ modules:
 
         width="100%">
 
-        Sorry, your browser doesn't support embedded videos, but don't worry, you
-        can
+        Sorry, your browser doesn't support embedded videos, but don't worry,
+        you can
 
         <a
         href="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task3-motivation.webm">download
@@ -62,11 +69,11 @@ modules:
 
         </video>
 
-        > Ihre Codeänderungen werden auf der Station anonymisiert gespeichert. Wir
-        wollen damit tatsächliche Problemfelder identifizieren, um damit die
-        Veranstaltung systematisch weiterzuentwickeln. Aus den Daten
-        können keine Rückschlüsse auf den Teilnehmenden oder spezifika des
-        Rechners gezogen werden. Wenn Sie Fragen dazu haben, sprechen Sie uns gern an.
+        > Ihre Codeänderungen werden auf der Station anonymisiert gespeichert.
+        Wir wollen damit tatsächliche Problemfelder identifizieren, um damit die
+        Veranstaltung systematisch weiterzuentwickeln. Aus den Daten können
+        keine Rückschlüsse auf den Teilnehmenden oder spezifika des Rechners
+        gezogen werden. Wenn Sie Fragen dazu haben, sprechen Sie uns gern an.
 
 
         Wir freuen uns auf Ihr Feedback und Ihre Anregungen.
@@ -82,6 +89,7 @@ modules:
     showInCustom: lobby
     width: full
     height: huge
+    id: a8134cb0-46d2-4b3e-9123-09ba5e608e34
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
     config:
       content: >-
@@ -91,49 +99,65 @@ modules:
         ## Lernziele
 
 
-        * Konfiguration und Nutzung von Interrupts zur Erkennung und Reaktion auf externe Ereignisse
+        * Konfiguration und Nutzung von Interrupts zur Erkennung und Reaktion
+        auf externe Ereignisse
 
         * Steuerung eines Schrittmotors mit präziser Positionsbestimmung
 
         * Visualisierung der Motorposition auf einem LED-Ring
 
-        * Nutzung globaler Variablen mit volatile zur Synchronisation zwischen Hauptprogramm und Interrupt-Service-Routine
+        * Nutzung globaler Variablen mit volatile zur Synchronisation zwischen
+        Hauptprogramm und Interrupt-Service-Routine
 
-        * Strukturierung des Programmcodes durch Auslagerung wiederverwendbarer Funktionen
-        
+        * Strukturierung des Programmcodes durch Auslagerung wiederverwendbarer
+        Funktionen
+
 
         ## Aufgabenstellung
 
         Entwickeln Sie einen Programmcode, der folgende Anforderungen erfüllt:
 
-        * **Interrupt-Routine (ISR)**: implementieren Sie eine ISR, die bei einer fallenden Flanke des Sensors (Pin 2) die globale, 
+        * **Interrupt-Routine (ISR)**: implementieren Sie eine ISR, die bei
+        einer fallenden Flanke des Sensors (Pin 2) die globale, 
           als volatile deklarierte Variable position auf 0 setzt, wenn ein Signal detektiert wird
 
-        * **Ersatz des Polling-Ansatzes**: entfernen Sie das bisherige Polling im Hauptprogramm und ersetzen Sie es durch die ISR, 
+        * **Ersatz des Polling-Ansatzes**: entfernen Sie das bisherige Polling
+        im Hauptprogramm und ersetzen Sie es durch die ISR, 
           um den Sensorstatus effizient zu erfassen
 
-        * **Visualisierung der Motorposition**: binden Sie den LED-Ring (24 LEDs) ein und skalieren Sie den Positionswert position auf den Wertebereich des LED-Rings, 
+        * **Visualisierung der Motorposition**: binden Sie den LED-Ring (24
+        LEDs) ein und skalieren Sie den Positionswert position auf den
+        Wertebereich des LED-Rings, 
           um die aktuelle Motorposition anzuzeigen
 
-        * **Ansteuerung des Schrittmotors**: steuern Sie einen Schrittmotor (2048 Schritte/Umdrehung) für 3 volle Umdrehungen an und synchronisieren Sie die LED-Visualisierung mit der Motorbewegung
+        * **Ansteuerung des Schrittmotors**: steuern Sie einen Schrittmotor
+        (2048 Schritte/Umdrehung) für 3 volle Umdrehungen an und synchronisieren
+        Sie die LED-Visualisierung mit der Motorbewegung
 
 
         ## Technische Basis
 
-        Die Umsetzung erfolgt auf einem Arduino Uno mit den folgenden Komponenten:
+        Die Umsetzung erfolgt auf einem Arduino Uno mit den folgenden
+        Komponenten:
 
 
-        | Bautteil                | Bezeichnung                 | Elektrische Verbindung       |
+        | Bautteil                | Bezeichnung                 | Elektrische
+        Verbindung       |
 
-        | ----------------------- | --------------------------- | ---------------------------- |
+        | ----------------------- | --------------------------- |
+        ---------------------------- |
 
-        | Schrittmotor            | 28BYJ-48                    | Pins 8, 9, 10, 11            |
+        | Schrittmotor            | 28BYJ-48                    | Pins 8, 9, 10,
+        11            |
 
-        | Motortreiber            | ULN2003                     | Versorgung des Schrittmotors |
+        | Motortreiber            | ULN2003                     | Versorgung des
+        Schrittmotors |
 
-        | Magnetischer Sensor     | Hall-Sensor                 | Pin 2, 5V, GND               |
+        | Magnetischer Sensor     | Hall-Sensor                 | Pin 2, 5V,
+        GND               |
 
-        | LED-Ring                | Adafruit NeoPixel (24 LEDs) | Pin 3, 5V, GND               |
+        | LED-Ring                | Adafruit NeoPixel (24 LEDs) | Pin 3, 5V,
+        GND               |
 
 
         > Der Zeitaufwand für die Umsetzung der Aufgabe beträgt etwa 90 Minuten.
@@ -146,6 +170,7 @@ modules:
     showInCustom: Room 1
     width: full
     height: tall
+    id: 4cf897cf-9eef-442c-8564-f40ba321817a
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
     config:
       content: >-
@@ -162,6 +187,7 @@ modules:
     showInCustom: Room 1
     width: half
     height: tall
+    id: 86ab8558-6400-4259-8b6d-5f46408151b0
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
     config:
       content: >-
@@ -186,11 +212,10 @@ modules:
     showInCustom: Room 2
     width: half
     height: tall
+    id: e98b099b-ab82-45bc-a40a-c396bcf072fc
   - url: https://edrys-labs.github.io/module-editor/index.html
     config:
-      runCommand: execute
-      language: cpp
-      synchronize: false
+      editorId: ''
       editorText: |
         #define BUTTON_PIN 2 // Der Pin, an dem der Taster angeschlossen ist 
         #define LED_PIN 13   // Die eingebaute LED 
@@ -229,12 +254,19 @@ modules:
             }
             lastInterruptTime = millis();       // Fehler: Entprell-Logik fehlt
         }
+      runCommand: execute
+      language: cpp
+      theme: vs-dark
+      synchronize: false
+      readOnly: false
+      showLanguageSelector: false
     studentConfig: ''
     teacherConfig: ''
     stationConfig: ''
     showInCustom: Room 2
     width: full
     height: huge
+    id: f5cd5722-8d2f-413d-b559-ebda37a6b95f
   - url: https://edrys-labs.github.io/module-avr8js/index.html
     config:
       modules: |
@@ -253,12 +285,11 @@ modules:
     showInCustom: Room 2
     width: half
     height: tall
-  - url: https://edrys-labs.github.io/module-editor/index.html
+    id: bc1e2107-56e7-4703-bdcc-2a50e76f499d
+  - url: https://edrys-labs.github.io/module-monaco-editor/
     config:
-      runCommand: execute
-      language: cpp
-      theme: light
-      editorText: |-
+      editorId: ''
+      value: |-
         #include <Stepper.h>
         #include <Adafruit_NeoPixel.h>
 
@@ -314,16 +345,34 @@ modules:
         void loop()
         {
         }
+      runCommand: execute
+      language: cpp
+      theme: vs-light
+      synchronize: true
+      readOnly: false
+      showLanguageSelector: true
     showInCustom: station
     width: full
     height: medium
-  - url: https://edrys-labs.github.io/module-station-stream/index.html
+    id: 9086ca54-e4ef-43a1-813c-48c7a260e192
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+  - url: https://edrys-labs.github.io/module-streaming/index.html
     stationConfig:
+      streamName: Stream 2
+      streamQuality: medium
       video: true
       audio: false
+      mirrorX: false
+      mirrorY: false
+      rotate: 0
+      streamMethod: webrtc
+      websocketUrl: ''
     showInCustom: station
     width: half
     height: medium
+    id: 191b29ab-62d6-4281-a2a9-3f8551b65d8c
   - url: https://edrys-labs.github.io/module-pyxtermjs/index.html
     config: ''
     studentConfig: ''
@@ -354,6 +403,7 @@ modules:
     showInCustom: station
     width: full
     height: tall
+    id: b0344d0d-f857-45e8-b1dd-e797de9bd79b
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
     config:
       content: >-
@@ -489,6 +539,7 @@ modules:
     showInCustom: station
     width: half
     height: tall
+    id: d70e5958-db60-4819-8c4d-cd1112f36b72
   - url: https://edrys-labs.github.io/module-code-logger/
     config: ''
     studentConfig: ''
@@ -497,11 +548,20 @@ modules:
     showInCustom: station, station-only
     width: full
     height: tall
+    id: e121590b-3e1e-44b6-8322-507b4c40ebe1
   - url: https://edrys-labs.github.io/module-station-light-control/index.html
     config: ''
     studentConfig: ''
     teacherConfig: ''
-    stationConfig: ''
+    stationConfig:
+      lightIp: 192.168.8.142
     showInCustom: station, station-only
     width: third
     height: short
+    id: 65468979-9cff-4cc4-8b56-a073ddcd6ae1
+communicationConfig: null
+keepUrlConfig: true
+setupSigner: >-
+  BMc+QIQD5VAVHP2v/0DyhCE/LnGr/liNheFhay/HvQ3d29v0z59C9kD+AXZzWagCGFKSWrh1A4jprKj4qJlrU0M=
+setupSignature: >-
+  khzUatt6og8z4DZtSaR+kJH1vHUQirzuD1ff3y3HMuW0sginyZ49JAnxXR0Oc20RIsqeu1PJEMitIqRd1trMbw==

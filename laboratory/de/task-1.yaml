@@ -1,5 +1,6 @@
-id: wrFIoY73UQ8skrwj
-createdBy: 15sg55AmHTPu
+id: Ri1DZZcHzTzv5y15
+createdBy: >-
+  BLgcLED7cHjWgKEAoyeWXEOhJTHV0lNl9MeH3yiyqaL9iiVMOWdeVER+YG9fz4n44JWdS/Sbc1nZ1FQAITVyH4U=
 dateCreated: 1689064662293
 name: Komplexaufgabe 1 - Distanzmessung
 meta:
@@ -18,7 +19,7 @@ members:
   student: []
 modules:
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
-    config: 
+    config:
       content: >-
         # Komplexaufgabe 1 - Distanzmessung
 
@@ -26,7 +27,8 @@ modules:
         Liebe Teilnehmerinnen und Teilnehmer,
 
 
-        dies ist die erste Komplexaufgabe, die Ihnen Gelegenheit geben soll, sich 
+        dies ist die erste Komplexaufgabe, die Ihnen Gelegenheit geben soll,
+        sich 
 
         zusätzlich zu den praktischen Übungen mit den Grundlagen der
         Programmierung 
@@ -35,17 +37,18 @@ modules:
 
         Wir werden nunmehr jede Woche eine neue Aufgabe für Sie freischalten.
 
-        Wir haben uns für eine Remote-Lösung entschieden, da die Aufbauten Schritt 
-        für Schritt der Labore immer aufwändiger werden. Entsprechend erlaubt uns der Webzugriff 
-        einen ressourcensparenden und zeiteffizienten Einsatz der Setups. Die Umsetzung
-        ist Bestandteil eines Forschungsprojektes und wir freuen uns über Ihr Feedback.
+        Wir haben uns für eine Remote-Lösung entschieden, da die Aufbauten
+        Schritt  für Schritt der Labore immer aufwändiger werden. Entsprechend
+        erlaubt uns der Webzugriff  einen ressourcensparenden und
+        zeiteffizienten Einsatz der Setups. Die Umsetzung ist Bestandteil eines
+        Forschungsprojektes und wir freuen uns über Ihr Feedback.
 
-        > Die Aufgabenstellung umfasst zwei Aufgabenkomplexe A und B. Der Bereich 
-        A) richtet sich insbesondere an Studierende
-        mit bislang wenig  ausgeprägter Programmiererfahrung. Studierende, die mit dem 
-        Mikrocontroller vertraut sind, nutzen diese Aufgabe um Ihre Fähigkeiten mit dem 
-        Aufgabenkomplex B) zu vertiefen.
-        
+        > Die Aufgabenstellung umfasst zwei Aufgabenkomplexe A und B. Der
+        Bereich  A) richtet sich insbesondere an Studierende mit bislang wenig 
+        ausgeprägter Programmiererfahrung. Studierende, die mit dem 
+        Mikrocontroller vertraut sind, nutzen diese Aufgabe um Ihre Fähigkeiten
+        mit dem  Aufgabenkomplex B) zu vertiefen.
+
         Die Aufgaben sind so konzipiert, dass Sie die Lösung selbstständig
         erarbeiten 
 
@@ -63,8 +66,8 @@ modules:
         der "Station".
 
 
-        > Ihre Codeänderungen werden auf der Station anonymisiert gespeichert. Wir
-        wollen 
+        > Ihre Codeänderungen werden auf der Station anonymisiert gespeichert.
+        Wir wollen 
 
         damit tatsächliche Problemfelder identifizieren, um damit die
         Veranstaltung systematisch
@@ -80,17 +83,18 @@ modules:
 
 
         _Ihr CrossLab Team_
-    studentConfig: 
+    studentConfig:
       content: ''
-    teacherConfig: 
+    teacherConfig:
       content: ''
-    stationConfig: 
+    stationConfig:
       content: ''
     showInCustom: lobby
     width: full
     height: huge
+    id: 266bb2a8-3278-4f79-9308-4e4367f100ae
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
-    config: 
+    config:
       content: >-
         # Tutorial für Studierende
 
@@ -109,8 +113,8 @@ modules:
 
         width="620">
 
-        Sorry, your browser doesn't support embedded videos, but don't worry, you
-        can
+        Sorry, your browser doesn't support embedded videos, but don't worry,
+        you can
 
         <a
         href="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task1-motivation.webm">download
@@ -120,17 +124,18 @@ modules:
 
         </video>
           
-    studentConfig: 
+    studentConfig:
       content: ''
-    teacherConfig: 
+    teacherConfig:
       content: ''
-    stationConfig: 
+    stationConfig:
       content: ''
     showInCustom: lobby
     width: half
     height: tall
+    id: 4b6a7c4b-100b-4906-8355-6b8c49153bc9
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
-    config: 
+    config:
       content: >-
         # Aufgabeninhalt
 
@@ -141,8 +146,8 @@ modules:
         ### Aufgabenkomplex A
 
 
-        > Entwickeln Sie einen Programmcode, mit dem einfache Distanzmessungen mit
-        Hilfe eines 
+        > Entwickeln Sie einen Programmcode, mit dem einfache Distanzmessungen
+        mit Hilfe eines 
 
         [Ultraschallsensors](https://www.conrad.de/de/ratgeber/industrie-40/ultraschallsensoren.html) 
 
@@ -160,11 +165,11 @@ modules:
         3. entwickeln Codes in C für die Auswertung von Messungen.
 
 
-        Sie erarbeiten sich dafür die Struktur eines Code Fragmentes, das auf der
-        Basis von Arduino-Bibliotheken
+        Sie erarbeiten sich dafür die Struktur eines Code Fragmentes, das auf
+        der Basis von Arduino-Bibliotheken
 
-        geschrieben und ergänzen Funktionen. Die Ausgabe erfolgt über die Serielle
-        Schnittestelle oder wahlweise
+        geschrieben und ergänzen Funktionen. Die Ausgabe erfolgt über die
+        Serielle Schnittestelle oder wahlweise
 
         über das Display.
 
@@ -174,14 +179,17 @@ modules:
           
         Im Rahmen dieser Aufgabenstellung:
 
-        > Entwickeln Sie ein Distanzmessystem, dass es Ihnen erlaubt, per Serielle Schnittstelle auszuwählen, 
-        ob die Ausgaben auf dem Display in cm oder inch realisiert werden sollen.
-        
-        Diese Aufgabenstellung baut hauptsächlich auf der "Nutzung" bestehender Implementierungen auf.
+        > Entwickeln Sie ein Distanzmessystem, dass es Ihnen erlaubt, per
+        Serielle Schnittstelle auszuwählen,  ob die Ausgaben auf dem Display in
+        cm oder inch realisiert werden sollen.
+
+        Diese Aufgabenstellung baut hauptsächlich auf der "Nutzung" bestehender
+        Implementierungen auf.
 
         1. arbeiten Sie sich in den Quellcode eines Open-Source Projektes ein,
-        2. explorieren Sie das Programmierinterface der LCD Implementierung 
-        3. kombinieren Methoden in einem kleinen Projekt, dass einen Nutzerkonfiguration des Messystems zulässt.
+        2. explorieren Sie das Programmierinterface der LCD Implementierung  3.
+        kombinieren Methoden in einem kleinen Projekt, dass einen
+        Nutzerkonfiguration des Messystems zulässt.
             
         > Der Zeitaufwand für die Umsetzung der Aufgabe beträgt etwa 45 Minuten.
 
@@ -202,8 +210,8 @@ modules:
         ([SRF04](https://datasheetspdf.com/pdf-file/523589/ETC/SRF04/1)). Dieser
         ist in der Lage Reichweiten 
 
-        bis etwa 10 m abzudecken. In unserer Anwendung wird er auf kurze Distanzen
-        bis etwa 50cm verwendet.
+        bis etwa 10 m abzudecken. In unserer Anwendung wird er auf kurze
+        Distanzen bis etwa 50cm verwendet.
 
         Zusätzlich ist ein 16x2 Display mit dem Mikrocontroller verbunden.
 
@@ -214,52 +222,55 @@ modules:
         | ----------------------- | ----------- |
         ---------------------------------------- |
 
-        | Ultraschallsensor       | SRF04       | 5V, GND, Trigger (Pin 11), Echo
-        (Pin 12) |
+        | Ultraschallsensor       | SRF04       | 5V, GND, Trigger (Pin 11),
+        Echo (Pin 12) |
 
-        | LCD module display 2x16 |             | 5V, GND, SCL (Pin 19), SDA (Pin
-        18)      |
-    studentConfig: 
+        | LCD module display 2x16 |             | 5V, GND, SCL (Pin 19), SDA
+        (Pin 18)      |
+    studentConfig:
       content: ''
-    teacherConfig: 
+    teacherConfig:
       content: ''
-    stationConfig: 
+    stationConfig:
       content: ''
     showInCustom: Room 1
     width: full
     height: tall
+    id: cd13418a-f5c5-4483-b7b1-9d5207e594c6
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
-    config: 
+    config:
       content: >-
         # Arduino Layout
 
 
         ![ArduinoLayout](https://docs.arduino.cc/static/cb2219c4f549dd9a7fe040362b668567/a6d36/Pinout-UNOrev3_latest.png)
-    studentConfig: 
+    studentConfig:
       content: ''
-    teacherConfig: 
+    teacherConfig:
       content: ''
-    stationConfig: 
+    stationConfig:
       content: ''
     showInCustom: Room 1
     width: half
     height: tall
+    id: 529c6e13-a39b-4de0-a292-fa16b87dd407
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
-    config: 
+    config:
       content: >-
         # Simulatorübung Aufgabenkomplex A)
 
 
         Der Ultraschallsensor kommuniziert mit dem Mikrocontroller über eine
-        Abfolge von Spannungswechseln. Darin wird der Start einer Messung genauso
-        kommuniziert, wie die Zeitdauer bis zum Empfang des Echos. Entsprechend
-        müssen wir uns zunächst damit beschäftigen die Flankenwechsel in den
-        Signalverläufen zu erkennen und die zugehörigen Zeitfenster zu vermessen.
+        Abfolge von Spannungswechseln. Darin wird der Start einer Messung
+        genauso kommuniziert, wie die Zeitdauer bis zum Empfang des Echos.
+        Entsprechend müssen wir uns zunächst damit beschäftigen die
+        Flankenwechsel in den Signalverläufen zu erkennen und die zugehörigen
+        Zeitfenster zu vermessen.
 
 
         Wir nehmen an, dass am Pin 2 des Mikrocontrollers ein Button befestigt
-        ist. Das nebenstehende Programm wertet dessen Zustand aus und signalisiert
-        dessen Wechsel.  
+        ist. Das nebenstehende Programm wertet dessen Zustand aus und
+        signalisiert dessen Wechsel.  
 
 
         > **Praktische Aufgabe 1**: Ergänzen Sie das Programm, um eine
@@ -269,17 +280,18 @@ modules:
         >  **Konzeptionelle Aufgabe 1**: Betrachten Sie dabei in der
         [Dokumentation](https://docs.arduino.cc/language-reference/de/funktionen/time/millis/)
         die unterschiedlichen Möglichkeiten  der Zeitmessung mit `millis()` und
-        `micros()`. Begründen Sie quantitativ warum welche Funktion mit Blick auf
-        den Einsatz mit dem Ultraschallsensor genutzt werden sollte.
-    studentConfig: 
+        `micros()`. Begründen Sie quantitativ warum welche Funktion mit Blick
+        auf den Einsatz mit dem Ultraschallsensor genutzt werden sollte.
+    studentConfig:
       content: ''
     teacherConfig:
       content: ''
-    stationConfig: 
+    stationConfig:
       content: ''
     showInCustom: Room 2
     width: half
     height: medium
+    id: 16fb596d-3df2-4476-b39e-4c581b82cfe2
   - url: https://edrys-labs.github.io/module-editor/index.html
     config:
       runCommand: execute
@@ -313,6 +325,7 @@ modules:
     showInCustom: Room 2
     width: full
     height: huge
+    id: 9b968f16-0f3a-45c0-9911-28f5afdebac9
   - url: https://edrys-labs.github.io/module-avr8js/index.html
     config:
       modules: >
@@ -329,29 +342,31 @@ modules:
     showInCustom: Room 2
     width: half
     height: medium
+    id: 1ab2b54f-9670-4832-bd22-959b4a365ab8
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
-    config: 
+    config:
       content: >-
         # Simulatorübung Aufgabenkomplex B
             
-        Zunächst soll das Interface für die Konfiguration anhand einer Simulation
-        vorbereitet. Der Quellcode im Simulator stellt Ihnen einen Zugriff auf das
-        LCD bereit.
+        Zunächst soll das Interface für die Konfiguration anhand einer
+        Simulation vorbereitet. Der Quellcode im Simulator stellt Ihnen einen
+        Zugriff auf das LCD bereit.
           
           > **Praktische Aufgabe 1**:   Erweitern Sie den Code so, dass der Nutzende durch Anweisungen auf dem Display angeleitet wird, eine maximale Messdistanz und ein Maßeinheit für die Distanzmessung anzugeben.
 
-        >  **Konzeptionelle Aufgabe 1**:   Überlegen Sie sich  inbesondere  welche
-        fehlerhaften Eingaben durch den  Nutzenden möglich sind und wie diese
-        "abgefangen" werden können  . 
-    studentConfig: 
+        >  **Konzeptionelle Aufgabe 1**:   Überlegen Sie sich  inbesondere 
+        welche fehlerhaften Eingaben durch den  Nutzenden möglich sind und wie
+        diese "abgefangen" werden können  . 
+    studentConfig:
       content: ''
-    teacherConfig: 
+    teacherConfig:
       content: ''
-    stationConfig: 
+    stationConfig:
       content: ''
     showInCustom: Room 3
     width: full
     height: medium
+    id: 68bb43ee-1370-407c-aa30-0124f9fa72b2
   - url: https://edrys-labs.github.io/module-editor/index.html
     config:
       runCommand: execute
@@ -381,6 +396,7 @@ modules:
     showInCustom: Room 3
     width: full
     height: medium
+    id: bf59615e-88b1-4ec7-988d-e84d88c0227a
   - url: https://edrys-labs.github.io/module-avr8js/index.html
     config:
       modules: |
@@ -396,11 +412,11 @@ modules:
     showInCustom: Room 3
     width: half
     height: tall
-  - url: https://edrys-labs.github.io/module-editor/index.html
+    id: 1f3472ee-0f9f-49ee-b590-75137f461690
+  - url: https://edrys-labs.github.io/module-monaco-editor/
     config:
-      runCommand: execute
-      theme: light
-      editorText: |
+      editorId: ''
+      value: |-
         // Kopieren Sie den für Ihren Aufgabenkomplex
         // relevanten initalen Code aus der untenstehenden 
         // Erläuterung heraus.
@@ -412,16 +428,31 @@ modules:
         void loop() 
         {
         }
+      runCommand: execute
+      language: ''
+      theme: vs-light
+      synchronize: true
+      readOnly: false
+      showLanguageSelector: true
     showInCustom: station
     width: full
     height: medium
-  - url: https://edrys-labs.github.io/module-station-stream/index.html
+    id: 616a90d5-c540-41ad-8392-04cada500454
+  - url: https://edrys-labs.github.io/module-streaming/index.html
     stationConfig:
+      streamName: Stream 1
+      streamQuality: medium
       video: true
       audio: false
+      mirrorX: false
+      mirrorY: false
+      rotate: 0
+      streamMethod: webrtc
+      websocketUrl: ''
     showInCustom: station
     width: half
     height: medium
+    id: b47ddc50-871c-4457-ba5e-e6bd710f846e
   - url: https://edrys-labs.github.io/module-pyxtermjs/index.html
     stationConfig:
       server: http://localhost:5000/pty
@@ -442,8 +473,9 @@ modules:
     showInCustom: station
     width: half
     height: medium
+    id: 1357ba64-a2dd-4a1c-92b4-46de149a751e
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
-    config: 
+    config:
       content: >-
 
         # Remote Labor (Aufgabe A)
@@ -516,17 +548,18 @@ modules:
         }
 
         ```
-    studentConfig: 
+    studentConfig:
       content: ''
-    teacherConfig: 
+    teacherConfig:
       content: ''
-    stationConfig: 
+    stationConfig:
       content: ''
     showInCustom: station
     width: half
     height: huge
+    id: 1693f1d9-f9f7-4192-8548-9958373305c6
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
-    config: 
+    config:
       content: >-
 
         # Remote Labor (Aufgabe B)
@@ -534,8 +567,8 @@ modules:
         > **Praktische Aufgabe 2**:  Nutzen Sie die Implementierung der  
         [NewPing](https://bitbucket.org/teckel12/arduino-new-ping/src/master/)
         Bibliothek für die objektorientierte Ansteuerung des SRF04  Sensors.
-        Arbeiten Sie sich dazu in die Dokumentation ein und identifizieren Sie die
-        Methoden, die Sie für die Bereitstellung der Distanzmessungen in
+        Arbeiten Sie sich dazu in die Dokumentation ein und identifizieren Sie
+        die Methoden, die Sie für die Bereitstellung der Distanzmessungen in
         unterschiedlichen Einheiten benötigen.
 
           > **Praktische Aufgabe 3**:  Fügen Sie Ihr Konfigurationsinterface ein, so dass Sie zwischen  verschiedenen Reichweiten und Ausgabeformaten unterscheiden können. Warum ist die Reichweite ein  wichtiger Parameter?
@@ -545,14 +578,12 @@ modules:
 
         ``` cpp   InitialCode.cpp
 
-        /*
-        * Posted on https://randomnerdtutorials.com
-        * created by http://playground.arduino.cc/Code/NewPing
-        */
+        /* * Posted on https://randomnerdtutorials.com * created by
+        http://playground.arduino.cc/Code/NewPing */
 
 
         #include <NewPing.h>
-        
+
         #define TRIGGER_PIN 11
 
         #define ECHO_PIN 12
@@ -563,11 +594,11 @@ modules:
         // NewPing setup of pins and maximum distance
 
         NewPing sonar(TRIGGER_PIN, ECHO_PIN, MAX_DISTANCE); 
-        
+
         void setup() {
           Serial.begin(9600);
         }
-        
+
         void loop() {
           delay(50);
           unsigned int distance = sonar.ping_cm();
@@ -576,15 +607,38 @@ modules:
         }
 
         ```
-    studentConfig: 
+    studentConfig:
       content: ''
-    teacherConfig: 
+    teacherConfig:
       content: ''
-    stationConfig: 
+    stationConfig:
       content: ''
     showInCustom: station
     width: half
     height: huge
+    id: b9148874-edca-4261-9e22-958372fa591e
+  - url: https://edrys-labs.github.io/module-survey/index.html
+    config: ''
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig:
+      survey: |-
+        {
+              "title": "Student Feedback",
+              "pages": [
+              {
+                  "name": "page1",
+                  "elements": [
+                  { "type": "rating", "name": "experience", "title": "Rate your experience", "rateMax": 5 },
+                  { "type": "comment", "name": "suggestions", "title": "Any suggestions?" }
+                  ]
+              }
+              ]
+          }
+    showInCustom: station
+    width: half
+    height: tall
+    id: 77180b6f-630c-46cb-aa4d-46093e48f0a7
   - url: https://edrys-labs.github.io/module-code-logger/
     config: ''
     studentConfig: ''
@@ -593,11 +647,20 @@ modules:
     showInCustom: station, station-only
     width: full
     height: tall
+    id: 4983851a-637c-4742-b467-d38cf59b774a
   - url: https://edrys-labs.github.io/module-station-light-control/index.html
     config: ''
     studentConfig: ''
     teacherConfig: ''
-    stationConfig: ''
+    stationConfig:
+      lightIp: 192.168.8.138
     showInCustom: station, station-only
     width: third
     height: short
+    id: 1c2d47c3-72b0-4952-bab6-d647bfc891d0
+communicationConfig: null
+keepUrlConfig: true
+setupSigner: >-
+  BLgcLED7cHjWgKEAoyeWXEOhJTHV0lNl9MeH3yiyqaL9iiVMOWdeVER+YG9fz4n44JWdS/Sbc1nZ1FQAITVyH4U=
+setupSignature: >-
+  5c3ASw5GlLgYmaqf81rc6f+MyPa+HDpGz06+bLwidCxrPMXVuL5xy3NfgYKXxnAuKvgxqveBSCPN9Zw0mhzlvw==
