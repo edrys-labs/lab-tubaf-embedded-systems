@@ -114,11 +114,11 @@ modules:
 
         Als eingebettetes System dient ein Mikrocontroller der Firma Atmel (heute Microchip), der auf einem [Arduino Uno Rev3](https://docs.arduino.cc/hardware/uno-rev3/) verbaut ist.
 
-        Grundlage der Aufgabe ist ein einfacher Ultraschallsensor mit zwei Wandlern vom Typ [SRF04](https://datasheetspdf.com/pdf-file/523589/ETC/SRF04/1). Er kann Entfernungen bis etwa 10 m erfassen; in unserer Anwendung wird er für kurze Distanzen bis etwa 50 cm eingesetzt. Zusätzlich ist ein 16x2-Display mit dem Mikrocontroller verbunden.
+        Grundlage der Aufgabe ist ein einfacher Ultraschallsensor mit zwei Wandlern vom Typ [SRF04](https://datasheetspdf.com/pdf-file/523589/ETC/SRF04/1). Er kann Entfernungen von etwa 3 cm bis 3 m erfassen; in unserer Anwendung wird er für kurze Distanzen bis etwa 50 cm eingesetzt. Zusätzlich ist ein 16x2-Display mit dem Mikrocontroller verbunden.
 
         | Bauteil                 | Bezeichnung | Elektrische Verbindung                   |
         | ----------------------- | ----------- | ---------------------------------------- |
-        | Ultraschallsensor       | SRF04       | 5V, GND, Trigger (Pin 11), Echo (Pin 12) |
+        | Ultraschallsensor       | SRF04       | 5V, GND, Trigger (Pin 12), Echo (Pin 11) |
         | LCD-Display 16x2        |             | 5V, GND, SCL (Pin 19), SDA (Pin 18)      |
     studentConfig:
       content: ''
@@ -424,8 +424,8 @@ modules:
         /* * Posted on https://randomnerdtutorials.com * created by http://playground.arduino.cc/Code/NewPing */
 
         #include <NewPing.h>
-        #define TRIGGER_PIN 11
-        #define ECHO_PIN 12
+        #define TRIGGER_PIN 12
+        #define ECHO_PIN 11
         #define MAX_DISTANCE 200
 
         // NewPing setup of pins and maximum distance
