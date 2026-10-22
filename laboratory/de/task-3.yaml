@@ -420,23 +420,10 @@ modules:
     stationConfig:
       server: http://localhost:5000/pty
       execute: execute
-      script: >
-        echo $CODE | base64 --decode > Hello.ino
-
-        arduino-cli sketch new Hello
-
-        olddir=$(pwd)
-
-        mv Hello.ino Hello
-
-        cd Hello
-
-        arduino-cli board attach -p /dev/ttyACM0 -b arduino:avr:uno
-
-        cd $olddir
-
-        arduino-cli compile Hello && arduino-cli upload -p /dev/ttyACM0 Hello &&
-        arduino-cli monitor -p /dev/ttyACM0
+      workflow: arduino-avr
+      board: arduino:avr:uno
+      port: /dev/ttyACM0
+      baud: 9600
       enable:
         teacher: true
         student: true

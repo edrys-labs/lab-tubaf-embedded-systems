@@ -306,23 +306,18 @@ modules:
     stationConfig:
       server: http://localhost:5000/pty
       execute: execute
-      script: >
-        echo $CODE | base64 --decode > Hello.ino
-
-        arduino-cli sketch new Hello
-
-        olddir=$(pwd)
-
-        mv Hello.ino Hello
-
-        cd Hello
-
-        arduino-cli board attach -p /dev/ttyACM1 -b arduino:avr:uno
-
-        cd $olddir
-
-        arduino-cli compile Hello && arduino-cli upload -p /dev/ttyACM1 Hello &&
-        serial-plotter.py -t radar -p /dev/ttyACM1
+      workflow: arduino-avr
+      board: arduino:avr:uno
+      port: /dev/ttyACM1
+      baud: 9600
+      script: |
+        SKETCH=$(basename $FILE .ino)
+        rm -rf $SKETCH && arduino-cli sketch new $SKETCH
+        echo $CODE | base64 --decode > $SKETCH/$SKETCH.ino
+        (cd $SKETCH && $FILES)
+        arduino-cli compile -b $BOARD $SKETCH &&
+          arduino-cli upload -b $BOARD -p $PORT $SKETCH &&
+          serial-plotter.py -t radar -p $PORT -b $BAUD
       enable:
         teacher: true
         student: true
@@ -432,13 +427,13 @@ modules:
     stationConfig:
       survey: |-
         {
-              "title": "Student Feedback",
+              "title": "Feedback zur Aufgabe",
               "pages": [
               {
                   "name": "page1",
                   "elements": [
-                  { "type": "rating", "name": "experience", "title": "Rate your experience", "rateMax": 5 },
-                  { "type": "comment", "name": "suggestions", "title": "Any suggestions?" }
+                  { "type": "rating", "name": "experience", "title": "Wie bewerten Sie diese Aufgabe?", "rateMax": 5 },
+                  { "type": "comment", "name": "suggestions", "title": "Haben Sie Anregungen oder Verbesserungsvorschläge?" }
                   ]
               }
               ]
