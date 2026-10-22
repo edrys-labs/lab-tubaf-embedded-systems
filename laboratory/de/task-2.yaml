@@ -7,11 +7,11 @@ meta:
   logo: >-
     https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_EAVD/master/excercise/images/excercise_04.png
   description: >-
-    Die Studierenden setzen eine Anwendung um, die zwei existierende Klassen für
-    die Verwendung von peripheren Bauteilen - Ultraschallsensor und LCD-Display
-    - um. Im Ergebnis steht eine Applikation die kontinuierlich die Distanz zu
-    einem Hindernis vermisst. Die Daten werden zudem über die Serielle
-    Schnittstelle ausgegeben und analysiert.
+    Die Studierenden konfigurieren den Analog-Digital-Wandler über direkte
+    Registerzugriffe (avrlibc) und rechnen die Messwerte eines
+    Infrarot-Distanzsensors in Distanzen um. Ein Servomotor schwenkt den Sensor,
+    sodass ein einfacher Scanner entsteht, dessen Messwerte über die serielle
+    Schnittstelle ausgegeben und visualisiert werden.
   selfAssign: true
   defaultNumberOfRooms: '2'
 members:
@@ -20,77 +20,37 @@ members:
 modules:
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
     config:
-      content: >-
+      content: |-
         # Komplexaufgabe 2 - Analog-Digital-Wandler
-
 
         Liebe Teilnehmerinnen und Teilnehmer,
 
+        die zweite Komplexaufgabe baut auf den Grundlagen der ersten auf und vertieft Ihr Verständnis für die Programmierung eingebetteter Systeme.
 
-        die zweite Aufgabe baut auf den grundlegenden Konzepten der ersten auf
-        und dient dazu,  Ihr Verständnis für die Programmierung eingebetteter
-        Systeme weiter zu vertiefen. 
+        Die Aufgaben werden als Remote-Labor angeboten, da die Laboraufbauten von Aufgabe zu Aufgabe umfangreicher werden. Über den Webzugriff können wir die Aufbauten ressourcenschonend und zeiteffizient einsetzen. Sollte dabei einmal etwas nicht wie erwartet funktionieren, geben Sie uns bitte Bescheid.
 
+        Der Laboraufbau kann jeweils nur von einer Person genutzt werden. Prüfen Sie daher bitte vorher, ob die Station gerade von jemand anderem verwendet wird. Die Station behält immer den zuletzt eingegebenen Code. Hinterlassen Sie Ihren Arbeitsplatz deshalb ordentlich und kopieren Sie vor dem Verlassen den Originalcode zurück in den Editor.
 
-        Wir haben uns für eine Remote-Lösung entschieden, da die Aufbauten
-        Schritt für Schritt immer aufwändiger werden. Entsprechend erlaubt uns
-        der Webzugriff einen ressourcensparenden und zeiteffizienten Einsatz der
-        Setups. Die Umsetzung dieser Remote-Lösung ist für uns alle neu und wir
-        bitten Sie daher um Verständnis, falls es zu Anfang noch zu Problemen
-        kommen sollte.
+        Raum 1 erläutert die Fragestellungen und Lernziele der Aufgabe. In Raum 2 folgt eine Simulatorübung zur Fehlerbehebung. Die praktische Umsetzung am Laboraufbau erfolgt auf der „Station“.
 
+        Die Aufgabe ist so konzipiert, dass Sie die Lösung selbstständig erarbeiten können. Wenn Sie dennoch Fragen haben, wenden Sie sich gern an das Betreuungsteam.
 
-        Noch umfasst unsere Lösung keinen Multi-User-Modus - entsprechend
-        könnten Sie einen Kommilitonen ziemlich ärgern, wenn Sie ihm die
-        Kontrolle entziehen. Prüfen Sie also bitte vorher, ob das Setup gerade
-        von jemand anderem verwendet wird. Die „Station" merkt sich immer den
-        letzten Stand, verlassen Sie Ihren Arbeitsplatz ordentlich und kopieren
-        sie vor dem verlassen einfach den Original-Code in den Editor ...
-
-
-        Für die Aufgabe erläutert Raum 1 die Fragestellungen und Lernziele.
-        Danach ist in Raum 2 eine Simulatorübung zur Fehlerbehebung vorgesehen.
-        Die praktische Umsetzung auf dem Laborsetup erfolgt auf der "Station".
-
-
-        Die Aufgabe ist so konzipiert, dass Sie die Lösung selbstständig
-        erarbeiten können.  Sollten Sie dennoch Fragen haben, können Sie sich
-        gerne an die Betreuer wenden.
-
-
-        Ein kleines Video-Tutorial über die Verwendung von Edrys:
-
+        Ein kurzes Video-Tutorial zur Verwendung von Edrys:
 
         <video
-
         controls
-
         src="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task2-motivation.webm"
-
         width="100%">
-
-        Sorry, your browser doesn't support embedded videos, but don't worry,
-        you can
-
-        <a
-        href="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task2-motivation.webm">download
-        it</a>
-
-        and watch it with your favorite video player!
-
+        Ihr Browser kann das Video leider nicht einbetten. Sie können es
+        <a href="https://github.com/edrys-labs/lab-tubaf-embedded-systems/raw/refs/heads/main/media/task2-motivation.webm">herunterladen</a>
+        und mit einem Videoplayer Ihrer Wahl ansehen.
         </video>
 
-        > Ihre Codeänderungen werden auf der Station anonymisiert gespeichert.
-        Wir wollen  damit tatsächliche Problemfelder identifizieren, um damit
-        die Veranstaltung systematisch weiterzuentwickeln. Aus den Daten können
-        keine Rückschlüsse auf den Teilnehmenden oder spezifika des Rechners
-        gezogen werden. Wenn Sie Fragen dazu haben, sprechen Sie uns gern an.
-
+        > Ihre Codeänderungen werden auf der Station anonymisiert gespeichert. So können wir typische Schwierigkeiten erkennen und die Lehrveranstaltung gezielt weiterentwickeln. Die Daten lassen keine Rückschlüsse auf Ihre Person oder Ihren Rechner zu. Wenn Sie Fragen dazu haben, sprechen Sie uns gern an.
 
         Wir freuen uns auf Ihr Feedback und Ihre Anregungen.
 
-
-        _Ihr CrossLab Team_
+        _Ihr CrossLab-Team_
     studentConfig:
       content: ''
     teacherConfig:
@@ -103,65 +63,36 @@ modules:
     id: c0b8dd1b-967b-4cd2-b878-74fdbea85280
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
     config:
-      content: >-
+      content: |-
         # Aufgabeninhalt
-
 
         ## Lernziele
 
-
-        * Konfiguration und Nutzung eines Analog-Digital-Wandlers ohne
-        Arduino-Bibliotheken, mit direkten Registerzugriffen (avrlibc)
-
-        * Transformation von digitalen Spannungswerten in physikalische Größen
-        (Distanz in cm)
-
-        * Strukturierte und wiederverwendbare Programmierung durch die
-        Auslagerung von Codeteilen in Funktionen
-
-        * Steuerung eines Servomotors für präzise Bewegung und
-        Positionskontrolle
-
+        * Konfiguration und Nutzung des Analog-Digital-Wandlers ohne Arduino-Bibliotheken, über direkte Registerzugriffe (avrlibc)
+        * Umrechnung digitaler Spannungswerte in physikalische Größen (Distanz in cm)
+        * Strukturierte und wiederverwendbare Programmierung durch Auslagern von Codeteilen in Funktionen
+        * Ansteuerung eines Servomotors zur präzisen Positionierung
         * Ausgabe und Speicherung der Messergebnisse
-
 
         ## Aufgabenstellung
 
-        Entwickeln Sie einen Programmcode, der folgende Anforderungen erfüllt:
+        Entwickeln Sie einen Programmcode, der die folgenden Anforderungen erfüllt:
 
-        * implementieren Sie eine Funktion make_scan, die den Distanzsensor
-        schrittweise von 0° bis 180° bewegt und dabei in jedem Schritt die
-        Distanz misst
-
-        * ersetzen Sie die Funktion analogRead() durch eine direkte
-        Konfiguration und Nutzung des Analog-Digital-Wandlers (ADC) mit avrlibc
-
-        * lesen Sie die digitalen Spannungswerte ein und transformieren Sie
-        diese in Distanzwerte in cm
-
-        * strukturieren Sie Ihren Code, indem Sie redundante Codeteile in
-        Funktionen auslagern
-
+        * Implementieren Sie eine Funktion `make_scan`, die den Distanzsensor schrittweise von 0° bis 180° schwenkt und bei jedem Schritt die Distanz misst.
+        * Ersetzen Sie die Funktion `analogRead()` durch eine direkte Konfiguration und Nutzung des Analog-Digital-Wandlers (ADC) mit avrlibc.
+        * Lesen Sie die digitalen Spannungswerte ein und rechnen Sie sie in Distanzwerte in cm um.
+        * Strukturieren Sie Ihren Code, indem Sie redundante Codeteile in Funktionen auslagern.
 
         ## Technische Basis
 
-        Die Umsetzung erfolgt auf einem Arduino Uno mit den folgenden
-        Komponenten:
+        Die Umsetzung erfolgt auf einem Arduino Uno mit den folgenden Komponenten:
 
+        | Bauteil                   | Bezeichnung    | Elektrische Verbindung      |
+        | ------------------------- | -------------- | --------------------------- |
+        | Distanzsensor (Infrarot)  | Sharp GP2Y0A02 | 5V, GND, Signal (Pin A0)    |
+        | Servomotor                |                | PWM-Signal (Pin 9), 5V, GND |
 
-        | Bautteil                | Bezeichnung | Elektrische
-        Verbindung                   |
-
-        | ----------------------- | ----------- |
-        ---------------------------------------- |
-
-        | Distanzsensor (Infrarot)      | Sharp GP2Y0A02       | 5V, GND, Signal
-        (Pin A0) |
-
-        | Servomotor |             | PWM-Signal (Pin 9), 5V, GND    |
-
-
-        > Der Zeitaufwand für die Umsetzung der Aufgabe beträgt etwa 90 Minuten.
+        > Der Zeitaufwand für diese Aufgabe beträgt etwa 90 Minuten.
     studentConfig:
       content: ''
     teacherConfig:
@@ -191,28 +122,14 @@ modules:
     id: 90dd8a23-81e0-435d-9941-e0b3510eb116
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
     config:
-      content: >-
-        # Simulatorübung: Fehlerhafte ADC-Konfiguration 
+      content: |-
+        # Simulatorübung: Fehlerhafte ADC-Konfiguration
 
+        Der Analog-Digital-Wandler (ADC) des Mikrocontrollers wandelt analoge Spannungen in digitale Werte um, die das restliche System weiterverarbeiten kann. Dies geschieht in einer festen Abfolge aus Konfiguration, Messung und Auswertung. Damit die Messungen zuverlässig funktionieren, muss die richtige Referenzspannung eingestellt, der ADC korrekt initialisiert und das Messergebnis richtig interpretiert werden.
 
-        Der ADC (Analog-Digital-Wandler) des Mikrocontrollers kommuniziert mit
-        dem restlichen System,  indem er analoge Spannungen in digitale Werte
-        umwandelt. Dies geschieht in einer definierten Abfolge von
-        Konfiguration,  Messung und Auswertung. Damit die Messungen zuverlässig
-        funktionieren, muss die richtige Referenzspannung eingestellt,  der ADC
-        korrekt initialisiert und die Messergebnisse korrekt interpretiert
-        werden.
+        Wir nehmen an, dass am analogen Pin A0 des Mikrocontrollers ein Potentiometer angeschlossen ist. Der ADC misst die Spannung an diesem Pin, und das Programm gibt die berechneten Werte über die serielle Schnittstelle aus.
 
-
-        Wir nehmen an, dass am analogen Pin A0 des Mikrocontrollers ein
-        Potentiometer befestigt ist.  Der ADC misst die Spannung am Pin und gibt
-        die berechneten Werte über die serielle Schnittstelle aus.
-
-
-        > **Aufgabe**: Das gegebene Programm enthält mehrere Fehler, die Sie
-        beheben sollen. 
-          Ziel ist es, mit einem Potentiometer am ADC-Eingang (A0) Spannungswerte im Bereich 
-          von 0 bis 1.1V zu messen und diese über die serielle Schnittstelle auszugeben.
+        > **Aufgabe**: Das gegebene Programm enthält mehrere Fehler, die Sie beheben sollen. Ziel ist es, mit dem Potentiometer am ADC-Eingang (A0) Spannungen im Bereich von 0 bis 1,1 V zu messen und über die serielle Schnittstelle auszugeben.
     studentConfig:
       content: ''
     teacherConfig:
@@ -413,67 +330,28 @@ modules:
     id: 5499926a-8785-4fd3-bc06-f66ae8f455b1
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
     config:
-      content: >-
+      content: |-
         # Komplexaufgabe 2 - Analog-Digital-Wandler
 
+        > Aufgabe 2 trainiert Ihre Fähigkeiten im Umgang mit dem Analog-Digital-Wandler. Dazu implementieren Sie einen einfachen „Laserscanner“.
 
-        > Die Aufgabe 2 zielt darauf Ihre Fähigkeiten mit Blick auf die Nutzung
-        des Analog-Digital-Wandlers zu trainieren. Dafür soll ein "Laserscanner"
-        implementiert werden.
+        Die vorliegende Arduino-Implementierung zeigt die erwartete Funktionalität: Ein Servomotor schwenkt einen Infrarot-Distanzsensor ([Sharp GP2Y0A02](http://www.pololu.com/file/download/gp2y0a02yk_e.pdf?file_id=0J156)) schrittweise um 180 Grad. Bei jedem Schritt von einem Grad wird eine neue Distanzmessung durchgeführt. Der Distanzsensor ist mit dem Eingang `A0` des Mikrocontrollers verbunden. Der Servomotor wird über ein PWM-Signal an Pin 9 gesteuert; seinen Code müssen Sie nicht anpassen. Die Grafik zeigt die Scans, deren Messwerte allerdings noch nicht in Distanzen umgerechnet sind.
 
+        Folgen Sie den Hinweisen im Code und ersetzen Sie die Arduino-Funktionen durch die entsprechenden avrlibc-Befehle:
 
-        Die Arduino-Implementierung illustriert die erwartete Funktionalität -
-        ein Infrarot-basierter Distanzsensor
+        0. Verbessern Sie zunächst die Struktur des Codes, indem Sie die redundanten Codeteile in die Funktion `make_scan` auslagern (siehe Zeile 13).
+        1. Ersetzen Sie die Konfiguration und Durchführung der analogen Messungen (`analogRead(analogPin)`) durch eine Umsetzung mit `avrlibc`.
+        2. Rechnen Sie die Spannungswerte in echte Distanzwerte in $cm$ um.
 
-        ([Sharp
-        GP2Y0A02](http://www.pololu.com/file/download/gp2y0a02yk_e.pdf?file_id=0J156))
-        schrittweise
+        Die Visualisierung nutzt ein Array mit 180 Einträgen. Dabei wird der Index als Winkel und der gespeicherte Wert als Distanz interpretiert.
 
-        durch einen Servomotor um 180 Grad geschwenkt. Mit jedem Schritt um
-        einen Grad wird eine neue Messung
-
-        mit dem Distanzsensor realisiert. Der Distanzsensor ist mit dem Eingang
-        `A0` des Mikrocontrollers verbunden.
-
-        Der Servo-Motor, dessen Code aber nicht angepasst wird, wird über ein
-        PWM-Signal an Pin 9 gesteuert. Die
-
-        Grafik zeigt jeweils die Scans, die allerdings noch nicht in einen
-        Distanzwert transformiert wurden.
-
-
-        Folgen Sie den Anweisungen im Code und ersetzen Sie die
-        Arduino-Funktionen durch die entsprechenden avrlibc Befehle:
-
-
-        0. Verbessern Sie zunächst die Struktur des Codes, in dem Sie die
-        redundanten Codeteile in eine Funktion `make_scan` "auslagern" (siehe
-        Zeile 13).
-
-        1. Ersetzen Sie die Konfiguration und die Durchführung der Analogen
-        Messungen (`analogRead(analogPin)`) durch eine `avrlibc` Realisierung.
-
-        2. Transformieren Sie die Spannungswerte in einen echten Distanzwert in
-        $cm$.
-
-
-        Die Visualisierung übernimmt eine 180 Einträge umfassendes Array. Dabei
-        wird der Index als Winkelangabe und der enthaltene Wert als Distanz
-        interpretiert.
-
-
-        ## Original Code
-
+        ## Ausgangscode
 
         ``` cpp
-
         #include <Servo.h>
 
-
         const int analogPin = A0;
-
         const int servoPin = 9;
-
 
         float calculate_dist_cm(float value){
             // Aufgabe 2: Bilden Sie die digitale Spannungsrepräsentation
@@ -481,7 +359,6 @@ modules:
             // TODO
             return value;
         }
-
 
         void make_scan(int start, int end, int step){
             // Aufgabe 0: Übernehmen Sie Zeile 38 - 49 und 52 - 61
@@ -491,7 +368,6 @@ modules:
             // Aufgabe 1: Ersetzen Sie die Arduino AnalogRead()
             //            Methode
         }
-
 
         void setup() {
             pinMode(analogPin, INPUT);
@@ -513,20 +389,20 @@ modules:
             delay(15);
             val_v = analogRead(analogPin);
             val_cm = calculate_dist_cm(val_v);
-            
+
             Serial.print("position:");
             Serial.print(pos);
             Serial.print(",distance:");
             Serial.println(val_cm);
             }
-            
+
             // Scan left
             for (pos = 180; pos >= 0; pos -= 1) {
             myservo.write(pos);
             delay(15);
             val_v = analogRead(analogPin);
             val_cm = calculate_dist_cm(val_v);
-            
+
             Serial.print("position:");
             Serial.print(pos);
             Serial.print(",distance:");
@@ -534,11 +410,8 @@ modules:
             }
         }
 
-
         void loop(){
-
         }
-
         ```
     studentConfig:
       content: ''
