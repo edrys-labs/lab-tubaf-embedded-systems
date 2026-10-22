@@ -154,11 +154,17 @@ modules:
 
         Der Ultraschallsensor kommuniziert mit dem Mikrocontroller über eine Abfolge von Spannungswechseln. Über sie wird sowohl der Start einer Messung als auch die Zeitdauer bis zum Empfang des Echos übermittelt. Deshalb beschäftigen wir uns zunächst damit, die Flankenwechsel in den Signalverläufen zu erkennen und die zugehörigen Zeitfenster zu messen.
 
-        Wir nehmen an, dass an Pin 2 des Mikrocontrollers ein Taster angeschlossen ist. Das nebenstehende Programm wertet seinen Zustand aus und meldet jeden Zustandswechsel.
+        An Pin 2 des simulierten Mikrocontrollers ist ein Taster angeschlossen. Das nebenstehende Programm wertet seinen Zustand aus und meldet jeden Zustandswechsel. Das Diagramm „Taster“ unter der Schaltung zeigt den Pegel von Pin 2 über die Zeit, sodass Sie jede Flanke und die Dauer jedes Tastendrucks direkt ablesen können.
 
-        > **Praktische Aufgabe 1**: Ergänzen Sie das Programm um eine Zeitmessung, die erfasst, wie lange der Taster gedrückt wurde.
+        > **Praktische Aufgabe 1**: Ergänzen Sie das Programm um eine Zeitmessung, die erfasst, wie lange der Taster gedrückt wurde. Vergleichen Sie Ihre Messwerte mit dem Diagramm.
 
         > **Konzeptionelle Aufgabe 1**: Vergleichen Sie anhand der [Dokumentation](https://docs.arduino.cc/language-reference/de/funktionen/time/millis/) die Zeitmessung mit `millis()` und `micros()`. Begründen Sie quantitativ, welche der beiden Funktionen für den Einsatz mit dem Ultraschallsensor geeignet ist.
+
+        ## Vorbereitung auf das Remote-Labor
+
+        Im Simulator ist außerdem ein Ultraschallsensor an denselben Pins wie auf der Station angeschlossen: Trigger an Pin 12, Echo an Pin 11. Der simulierte Sensor (HC-SR04) arbeitet nach demselben Prinzip wie der SRF04 auf der Station. Den Abstand zum Hindernis stellen Sie mit dem Schieberegler unter der Schaltung ein. Das untere Diagramm zeigt bei jeder Messung den Trigger-Puls an Pin 12 und den Echo-Puls an Pin 11.
+
+        > **Tipp**: Entwickeln und testen Sie die Funktionen `runUSmeasurement` und `duration2dist_cm` (Praktische Aufgaben 2 und 3) zuerst hier im Simulator. Den Ausgangscode finden Sie auf der Station. Prüfen Sie, ob die berechnete Distanz mit dem eingestellten Abstand übereinstimmt, bevor Sie Ihren Code auf der Station ausführen.
     studentConfig:
       content: ''
     teacherConfig:
@@ -206,11 +212,13 @@ modules:
     id: 9b968f16-0f3a-45c0-9911-28f5afdebac9
   - url: https://edrys-labs.github.io/module-avr8js/index.html
     config:
-      modules: >
-        <wokwi-led color='green'   pin='3' label='Pin 3'></wokwi-led>
-
-        <wokwi-pushbutton color='green'   pin='2' label='Pin 2'></wokwi-pushbutton>
-
+      modules: |
+        <center>
+          <wokwi-pushbutton color='green' pin='2' label='Taster (Pin 2)'></wokwi-pushbutton>
+          <wokwi-hc-sr04 pin-trig='12' pin-echo='11' distance='30' controls='distance:2:100'></wokwi-hc-sr04>
+        </center>
+        <avr-chart title='Taster' signals='D2' window='5s'></avr-chart>
+        <avr-chart title='Ultraschallsensor: Trigger (D12) und Echo (D11)' signals='D12, D11' window='8ms' mode='scope' trigger='D12:rise'></avr-chart>
         <span id='simulation-time'></span>
       execute: execute
     studentConfig: ''
@@ -218,16 +226,18 @@ modules:
     stationConfig: ''
     showInCustom: Room 2
     width: half
-    height: medium
+    height: huge
     id: 1ab2b54f-9670-4832-bd22-959b4a365ab8
   - url: https://edrys-labs.github.io/module-markdown-it/index.html
     config:
       content: |-
         # Simulatorübung Aufgabenkomplex B
 
-        Zunächst bereiten Sie die Benutzeroberfläche für die Konfiguration im Simulator vor. Der Quellcode im Simulator stellt Ihnen bereits den Zugriff auf das LCD bereit.
+        Zunächst bereiten Sie die Benutzeroberfläche für die Konfiguration im Simulator vor. Der Quellcode im Simulator stellt Ihnen bereits den Zugriff auf das LCD (16x2) bereit.
 
-        > **Praktische Aufgabe 1**: Erweitern Sie den Code so, dass Nutzende über Anweisungen auf dem Display angeleitet werden, eine maximale Messdistanz und eine Maßeinheit für die Distanzmessung anzugeben.
+        Wie auf der Station ist ein Ultraschallsensor angeschlossen: Trigger an Pin 12, Echo an Pin 11. Den Abstand zum Hindernis stellen Sie mit dem Schieberegler unter der Schaltung ein. Eingaben über die serielle Schnittstelle senden Sie über die Eingabezeile unter dem Terminal des Simulators. Auch die Bibliothek [NewPing](https://bitbucket.org/teckel12/arduino-new-ping/src/master/) steht im Simulator zur Verfügung.
+
+        > **Praktische Aufgabe 1**: Erweitern Sie den Code so, dass Nutzende über Anweisungen auf dem Display angeleitet werden, eine maximale Messdistanz und eine Maßeinheit für die Distanzmessung anzugeben. Testen Sie Ihre Oberfläche mit den Messwerten des simulierten Sensors.
 
         > **Konzeptionelle Aufgabe 1**: Überlegen Sie insbesondere, welche fehlerhaften Eingaben Nutzende machen können und wie sich diese abfangen lassen.
     studentConfig:
@@ -276,6 +286,8 @@ modules:
       modules: |
         <center>
         <wokwi-lcd1602></wokwi-lcd1602>
+        <br>
+        <wokwi-hc-sr04 pin-trig='12' pin-echo='11' distance='30' controls='distance:2:300'></wokwi-hc-sr04>
         <br>
         <span id='simulation-time'></span>
         </center>

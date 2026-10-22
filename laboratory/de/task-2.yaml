@@ -130,6 +130,8 @@ modules:
         Wir nehmen an, dass am analogen Pin A0 des Mikrocontrollers ein Potentiometer angeschlossen ist. Der ADC misst die Spannung an diesem Pin, und das Programm gibt die berechneten Werte über die serielle Schnittstelle aus.
 
         > **Aufgabe**: Das gegebene Programm enthält mehrere Fehler, die Sie beheben sollen. Ziel ist es, mit dem Potentiometer am ADC-Eingang (A0) Spannungen im Bereich von 0 bis 1,1 V zu messen und über die serielle Schnittstelle auszugeben.
+
+        Das Diagramm unter der Schaltung zeigt die Spannung an A0 als Linie und markiert jede Wandlung, die den Kanal A0 misst, mit dem gemessenen Wert. `ADIF` markiert jedes Mal, wenn der ADC das Ende einer Wandlung meldet. Vergleichen Sie vor und nach Ihren Korrekturen: Welcher Kanal wird gemessen, wie oft wird gewandelt, und stimmt die ausgegebene Spannung mit der im Diagramm überein?
     studentConfig:
       content: ''
     teacherConfig:
@@ -192,17 +194,17 @@ modules:
     config:
       modules: |
         <center>
-          <wokwi-potentiometer pin="0"></wokwi-potentiometer>
-          
-          <div id='simulation-time'></div>
+          <wokwi-potentiometer pin='A0' label='Potentiometer (A0)'></wokwi-potentiometer>
         </center>
+        <avr-chart title='ADC: Spannung an A0 und Ende jeder Wandlung' signals='ADC0, ADIF' window='5s'></avr-chart>
+        <div id='simulation-time'></div>
       execute: execute
     studentConfig: ''
     teacherConfig: ''
     stationConfig: ''
     showInCustom: Room 2
     width: half
-    height: tall
+    height: huge
     id: f6c1acc9-1764-4f76-8ce7-2597e0619ca7
   - url: https://edrys-labs.github.io/module-monaco-editor/
     config:

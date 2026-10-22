@@ -11,7 +11,7 @@ meta:
     Ausgabe auf einem LED-Ring und nutzen einen Interrupt, um beide Komponenten
     zu synchronisieren.
   selfAssign: true
-  defaultNumberOfRooms: '2'
+  defaultNumberOfRooms: '3'
 members:
   teacher: []
   student: []
@@ -27,7 +27,7 @@ modules:
 
         Die Aufgabe ist so konzipiert, dass Sie die Lösung selbstständig erarbeiten können. Wenn Sie dennoch Fragen haben, wenden Sie sich gern an das Betreuungsteam.
 
-        Raum 1 erläutert die Fragestellungen und Lernziele der Aufgabe. In Raum 2 folgt eine Simulatorübung zur Fehlerbehebung. Die praktische Umsetzung am Laboraufbau erfolgt auf der „Station“.
+        Raum 1 erläutert die Fragestellungen und Lernziele der Aufgabe. In Raum 2 folgt eine Simulatorübung zur Fehlerbehebung, und in Raum 3 können Sie die Aufgabe der Station im Simulator vorbereiten. Die praktische Umsetzung am Laboraufbau erfolgt auf der „Station“.
 
         Der Laboraufbau kann jeweils nur von einer Person genutzt werden. Prüfen Sie daher bitte vorher, ob die Station gerade von jemand anderem verwendet wird. Die Station behält immer den zuletzt eingegebenen Code. Hinterlassen Sie Ihren Arbeitsplatz deshalb ordentlich und kopieren Sie vor dem Verlassen den Originalcode zurück in den Editor.
 
@@ -131,6 +131,8 @@ modules:
         In dieser Übung schaltet ein Taster an Pin 2 die LED an Pin 13 ein und aus. Ein Interrupt soll dafür sorgen, dass die LED bei jedem Tastendruck ihren Zustand wechselt. Der gegebene Code enthält jedoch Fehler, die Sie beheben müssen.
 
         > **Aufgabe**: Korrigieren Sie die Fehler im Code, sodass der Interrupt korrekt konfiguriert ist und die LED bei jedem Tastendruck umschaltet.
+
+        Das Diagramm unter der Schaltung hilft bei der Fehlersuche: `D2` zeigt den Pegel des Tasters, `INTF0` markiert jedes Auslösen des externen Interrupts INT0, und `ISR` zeigt für jede Interrupt-Service-Routine, wann und wie lange sie läuft. `LOAD` gibt an, welchen Anteil der Rechenzeit die Interrupt-Service-Routinen beanspruchen. Prüfen Sie damit, bei welcher Flanke der Interrupt auslöst und ob Ihre Interrupt-Service-Routine so kurz ist, wie sie sein sollte.
     studentConfig:
       content: ''
     teacherConfig:
@@ -201,18 +203,130 @@ modules:
         <center>
           <wokwi-led color='red' pin='13' label='Pin 13'></wokwi-led>
 
-          <wokwi-pushbutton color='green'   pin='2' label='Pin 2'></wokwi-pushbutton>
-          
-          <div id='simulation-time'></div>
+          <wokwi-pushbutton color='green' pin='2' label='Taster (Pin 2)'></wokwi-pushbutton>
         </center>
+        <avr-chart title='Taster, Interrupt-Flag und Interrupt-Service-Routinen' signals='D2, INTF0, ISR, LOAD' window='3s'></avr-chart>
+        <div id='simulation-time'></div>
       execute: execute
     studentConfig: ''
     teacherConfig: ''
     stationConfig: ''
     showInCustom: Room 2
     width: half
-    height: tall
+    height: huge
     id: bc1e2107-56e7-4703-bdcc-2a50e76f499d
+  - url: https://edrys-labs.github.io/module-markdown-it/index.html
+    config:
+      content: |-
+        # Simulatorübung: Schrittmotor und LED-Ring
+
+        Hier können Sie die Aufgabe der Station vorbereiten, ohne den Laboraufbau zu belegen. Die Schaltung entspricht dem Aufbau auf der Station: Der Schrittmotor ist an den Pins 8, 9, 10 und 11 angeschlossen, der LED-Ring mit 24 LEDs an Pin 3. Den Hall-Sensor an Pin 2 ersetzt ein Taster: Ein Tastendruck zieht Pin 2 wie der vorbeifahrende Magnet auf `0`.
+
+        Der Ausgangscode entspricht dem Code auf der Station. Das Diagramm unter der Schaltung zeigt den Pegel von Pin 2 und, sobald Sie einen Interrupt verwenden, wann Ihre Interrupt-Service-Routine läuft.
+
+        > **Hinweis**: Der simulierte Schrittmotor hat 200 Schritte pro Umdrehung, der Motor auf der Station (28BYJ-48) dagegen 2048. Setzen Sie `STEPS` auf 2048, wenn Sie Ihren Code auf die Station übertragen.
+
+        > **Aufgabe**: Setzen Sie die Aufgabenstellung zunächst hier um: Interrupt-Service-Routine für Pin 2, globale `volatile`-Variable `position` und Anzeige der Zeigerposition auf dem LED-Ring. Drücken Sie den Taster, um den Nullpunkt zu setzen, und prüfen Sie, ob der LED-Ring der Bewegung des Motors folgt.
+    studentConfig:
+      content: ''
+    teacherConfig:
+      content: ''
+    stationConfig:
+      content: ''
+    showInCustom: Room 3
+    width: half
+    height: tall
+    id: 49576aec-ca2f-46b4-8478-53c3d316667d
+  - url: https://edrys-labs.github.io/module-monaco-editor/
+    config:
+      editorId: ''
+      value: |-
+        #include <Stepper.h>
+        #include <Adafruit_NeoPixel.h>
+
+        // Anzahl der Schritte pro Umdrehung
+        // Simulator: 200 Schritte, Station (28BYJ-48): 2048 Schritte
+        #define STEPS       200
+        // Motorgeschwindigkeit in RPM
+        #define MOTOR_RPM     6
+        Stepper stepper(STEPS, 8, 10, 9, 11); // Motor Pins
+
+        #define PIN           3
+        #define NUMPIXELS    24
+        Adafruit_NeoPixel pixels(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
+
+        int position = 0;
+
+        void setup()
+        {
+            pinMode(8, OUTPUT);
+            pinMode(9, OUTPUT);
+            pinMode(10, OUTPUT);
+            pinMode(11, OUTPUT);
+            pinMode(2, INPUT_PULLUP); // Taster als Ersatz für den Hall-Sensor
+
+            Serial.begin(9600);
+            Serial.println("Motor startet");
+
+            pixels.begin();
+            pixels.clear();
+
+            stepper.setSpeed(MOTOR_RPM);
+            int steps = 8;
+            int counter = 0;
+            // Generiere 3 Drehungen
+            // Überwache den Endlagensensor im Polling Mode und aktiviere den LED Ring
+            while (counter < 3 * STEPS) {
+                stepper.step(steps);
+                position=position+steps;
+                if (digitalRead(2) == 0) {
+                  for (int i=0; i<NUMPIXELS; i++)
+                    pixels.setPixelColor(i, pixels.Color(0, 150, 0));
+                  pixels.show();
+                } else {
+                  pixels.clear();
+                  pixels.show();
+                }
+                counter += steps;
+                Serial.println(counter);
+            }
+            Serial.println("3 Runden absolviert");
+        }
+
+        void loop()
+        {
+        }
+      runCommand: execute
+      language: cpp
+      theme: vs-dark
+      synchronize: false
+      readOnly: false
+      showLanguageSelector: false
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 3
+    width: full
+    height: huge
+    id: 5aa1119f-64ec-4eb3-867b-9bacd285f237
+  - url: https://edrys-labs.github.io/module-avr8js/index.html
+    config:
+      modules: |
+        <center>
+          <wokwi-stepper-motor pin='8,10,9,11' label='Schrittmotor'></wokwi-stepper-motor>
+          <wokwi-led-ring pixels='24' pin='3'></wokwi-led-ring>
+          <wokwi-pushbutton color='green' pin='2' label='Hall-Sensor (Pin 2)'></wokwi-pushbutton>
+        </center>
+        <avr-chart title='Sensor (Pin 2) und Interrupt-Service-Routinen' signals='D2, ISR' window='5s'></avr-chart>
+        <div id='simulation-time'></div>
+      execute: execute
+    studentConfig: ''
+    teacherConfig: ''
+    stationConfig: ''
+    showInCustom: Room 3
+    width: half
+    height: huge
+    id: 08b49e05-f28f-49de-afaa-750d3de7c55b
   - url: https://edrys-labs.github.io/module-monaco-editor/
     config:
       editorId: ''
