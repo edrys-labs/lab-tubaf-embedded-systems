@@ -209,8 +209,7 @@ modules:
       modules: >
         <wokwi-led color='green'   pin='3' label='Pin 3'></wokwi-led>
 
-        <wokwi-pushbutton color='green'   pin='2' label='Pin
-        2'></wokwi-pushbutton>
+        <wokwi-pushbutton color='green'   pin='2' label='Pin 2'></wokwi-pushbutton>
 
         <span id='simulation-time'></span>
       execute: execute
@@ -251,8 +250,8 @@ modules:
         #include <LiquidCrystal_I2C.h>
 
         #define I2C_ADDR    0x27
-        #define LCD_COLUMNS 20
-        #define LCD_LINES   4
+        #define LCD_COLUMNS 16
+        #define LCD_LINES   2
 
         LiquidCrystal_I2C lcd(I2C_ADDR, LCD_COLUMNS, LCD_LINES);
 
@@ -383,7 +382,7 @@ modules:
         void setup()
         {
           Serial.begin(9600);
-          Serial.print("Los geht's");
+          Serial.println("Los geht's");
 
           pinMode(trigPin, OUTPUT);
           pinMode(echoPin, INPUT);

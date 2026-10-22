@@ -201,8 +201,7 @@ modules:
         <center>
           <wokwi-led color='red' pin='13' label='Pin 13'></wokwi-led>
 
-          <wokwi-pushbutton color='green'   pin='2' label='Pin
-          2'></wokwi-pushbutton>
+          <wokwi-pushbutton color='green'   pin='2' label='Pin 2'></wokwi-pushbutton>
           
           <div id='simulation-time'></div>
         </center>
@@ -239,7 +238,6 @@ modules:
             pinMode(9, OUTPUT);
             pinMode(10, OUTPUT);
             pinMode(11, OUTPUT);
-            pinMode(11, OUTPUT);
             pinMode(2, INPUT_PULLUP);
 
             Serial.begin(9600);
@@ -264,7 +262,7 @@ modules:
                   pixels.clear();
                   pixels.show();
                 }
-                counter += 3;
+                counter += steps;
                 Serial.println(counter);
             }
             Serial.println("3 Runden absolviert");
@@ -371,7 +369,6 @@ modules:
             pinMode(9, OUTPUT);
             pinMode(10, OUTPUT);
             pinMode(11, OUTPUT);
-            pinMode(11, OUTPUT);
             pinMode(2, INPUT_PULLUP);
 
             Serial.begin(9600);
@@ -396,7 +393,7 @@ modules:
                   pixels.clear();
                   pixels.show();
                 }
-                counter += 3;
+                counter += steps;
                 Serial.println(counter);
             }
             Serial.println("3 Runden absolviert");

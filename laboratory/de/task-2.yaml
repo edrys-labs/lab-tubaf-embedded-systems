@@ -151,15 +151,15 @@ modules:
         #include <util/delay.h>
 
         void adc_init() {
-            // Fehlerhafte Konfiguration: Falsche Referenzspannung (externe Referenz gewählt)
-            ADMUX = (1 << REFS0); // Nur REFS0 gesetzt, sollte interne 1.1V-Referenz sein
+            // Fehlerhafte Konfiguration: falsche Referenzspannung
+            ADMUX = (1 << REFS0); // Fehler: REFS0 allein wählt AVCC (5 V), gefordert ist die interne 1,1-V-Referenz
 
             // Fehlerhafte Prescaler-Einstellung: Taktfrequenz zu hoch
-            ADCSRA = (1 << ADEN) | (1 << ADPS1); // Prescaler auf 8, ADC läuft zu schnell
+            ADCSRA = (1 << ADEN) | (1 << ADPS1); // Fehler: Prescaler 4, der ADC-Takt ist zu hoch (empfohlen: 50-200 kHz)
         }
 
         uint16_t adc_read(uint8_t channel) {
-            // Fehlerhafte Kanalwahl: Kanal über 7 wird nicht verhindert
+            // Fehlerhafte Kanalwahl: Die Maske 0xF8 löscht nur MUX2..0, Kanäle über 7 werden nicht abgefangen
             ADMUX = (ADMUX & 0xF8) | channel;
 
             ADCSRA |= (1 << ADSC); 
@@ -173,7 +173,7 @@ modules:
         }
 
         void loop() {
-            uint16_t adc_value = adc_read(8); // Fehler: Kanal 8 existiert nicht
+            uint16_t adc_value = adc_read(8); // Fehler: Kanal 8 ist der interne Temperatursensor, das Potentiometer hängt an A0
             float voltage = adc_value * (5.0 / 1023.0); // Fehlerhafte Berechnung mit falscher Referenzspannung
 
             Serial.print("Voltage: ");
@@ -221,7 +221,7 @@ modules:
         }
 
         void make_scan(int start, int end, int step){
-            // Aufgabe 0: Übernehmen Sie Zeile 38 - 49 und 52 - 61
+            // Aufgabe 0: Übernehmen Sie Zeile 37 - 47 und 50 - 60
             //            in eine Funktion
             // TODO
             //
@@ -320,7 +320,7 @@ modules:
         cd $olddir
 
         arduino-cli compile Hello && arduino-cli upload -p /dev/ttyACM1 Hello &&
-        serial-plotter.py -p /dev/ttyACM1
+        serial-plotter.py -t radar -p /dev/ttyACM1
       enable:
         teacher: true
         student: true
@@ -339,7 +339,7 @@ modules:
 
         Folgen Sie den Hinweisen im Code und ersetzen Sie die Arduino-Funktionen durch die entsprechenden avrlibc-Befehle:
 
-        0. Verbessern Sie zunächst die Struktur des Codes, indem Sie die redundanten Codeteile in die Funktion `make_scan` auslagern (siehe Zeile 13).
+        0. Verbessern Sie zunächst die Struktur des Codes, indem Sie die redundanten Codeteile in die Funktion `make_scan` auslagern (siehe Zeile 13). Deklarieren Sie dafür das Servo-Objekt `myservo` global, damit `make_scan` darauf zugreifen kann.
         1. Ersetzen Sie die Konfiguration und Durchführung der analogen Messungen (`analogRead(analogPin)`) durch eine Umsetzung mit `avrlibc`.
         2. Rechnen Sie die Spannungswerte in echte Distanzwerte in $cm$ um.
 
@@ -361,7 +361,7 @@ modules:
         }
 
         void make_scan(int start, int end, int step){
-            // Aufgabe 0: Übernehmen Sie Zeile 38 - 49 und 52 - 61
+            // Aufgabe 0: Übernehmen Sie Zeile 37 - 47 und 50 - 60
             //            in eine Funktion
             // TODO
             //
