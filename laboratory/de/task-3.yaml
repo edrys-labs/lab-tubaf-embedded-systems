@@ -1,6 +1,4 @@
 id: sEHRNUR9TnhA8wYs
-createdBy: >-
-  BMc+QIQD5VAVHP2v/0DyhCE/LnGr/liNheFhay/HvQ3d29v0z59C9kD+AXZzWagCGFKSWrh1A4jprKj4qJlrU0M=
 dateCreated: 1689064662293
 name: Komplexaufgabe 3 - Interrupts
 meta:
@@ -535,7 +533,3 @@ modules:
     id: 65468979-9cff-4cc4-8b56-a073ddcd6ae1
 communicationConfig: null
 keepUrlConfig: true
-setupSigner: >-
-  BMc+QIQD5VAVHP2v/0DyhCE/LnGr/liNheFhay/HvQ3d29v0z59C9kD+AXZzWagCGFKSWrh1A4jprKj4qJlrU0M=
-setupSignature: >-
-  khzUatt6og8z4DZtSaR+kJH1vHUQirzuD1ff3y3HMuW0sginyZ49JAnxXR0Oc20RIsqeu1PJEMitIqRd1trMbw==

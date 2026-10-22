@@ -1,6 +1,4 @@
 id: Ri1DZZcHzTzv5y15
-createdBy: >-
-  BLgcLED7cHjWgKEAoyeWXEOhJTHV0lNl9MeH3yiyqaL9iiVMOWdeVER+YG9fz4n44JWdS/Sbc1nZ1FQAITVyH4U=
 dateCreated: 1689064662293
 name: Komplexaufgabe 1 - Distanzmessung
 meta:
@@ -498,7 +496,3 @@ modules:
     id: 1c2d47c3-72b0-4952-bab6-d647bfc891d0
 communicationConfig: null
 keepUrlConfig: true
-setupSigner: >-
-  BLgcLED7cHjWgKEAoyeWXEOhJTHV0lNl9MeH3yiyqaL9iiVMOWdeVER+YG9fz4n44JWdS/Sbc1nZ1FQAITVyH4U=
-setupSignature: >-
-  5c3ASw5GlLgYmaqf81rc6f+MyPa+HDpGz06+bLwidCxrPMXVuL5xy3NfgYKXxnAuKvgxqveBSCPN9Zw0mhzlvw==

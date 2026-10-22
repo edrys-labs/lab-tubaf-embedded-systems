@@ -1,6 +1,4 @@
 id: MOy80MsaTmmd41yF
-createdBy: >-
-  BLgcLED7cHjWgKEAoyeWXEOhJTHV0lNl9MeH3yiyqaL9iiVMOWdeVER+YG9fz4n44JWdS/Sbc1nZ1FQAITVyH4U=
 dateCreated: 1689064662293
 name: Komplexaufgabe 2 - Analog-Digital-Wandler
 meta:
@@ -463,7 +461,3 @@ modules:
     id: 91a7b82b-465e-4c07-bbcc-3a6f4c411ba5
 communicationConfig: null
 keepUrlConfig: true
-setupSigner: >-
-  BLgcLED7cHjWgKEAoyeWXEOhJTHV0lNl9MeH3yiyqaL9iiVMOWdeVER+YG9fz4n44JWdS/Sbc1nZ1FQAITVyH4U=
-setupSignature: >-
-  +NpbffbgRk4InF9Km5WdUCYbzUVzVofbfaqHmTMQW644BZuTYNv3x+Hxm3iEq/1Ggw4Wffce/vYp4vFE60WIMg==
