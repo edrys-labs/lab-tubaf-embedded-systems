@@ -5,7 +5,7 @@ dateCreated: 1689064662293
 name: Komplexaufgabe 3 - Interrupts
 meta:
   logo: >-
-    https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_EAVD/master/excercise/images/excercise_04.png
+    https://raw.githubusercontent.com/edrys-labs/lab-tubaf-embedded-systems/main/media/task3-logo.png
   description: >-
     Die Studierenden kombinieren die Ansteuerung eines Schrittmotors mit einer
     Ausgabe auf einem LED-Ring und nutzen einen Interrupt, um beide Komponenten

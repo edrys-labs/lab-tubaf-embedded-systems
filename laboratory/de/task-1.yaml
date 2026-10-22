@@ -5,7 +5,7 @@ dateCreated: 1689064662293
 name: Komplexaufgabe 1 - Distanzmessung
 meta:
   logo: >-
-    https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_EAVD/master/excercise/images/excercise_04.png
+    https://raw.githubusercontent.com/edrys-labs/lab-tubaf-embedded-systems/main/media/task1-logo.png
   description: >-
     Die Studierenden setzen eine Distanzmessung mit einem Ultraschallsensor um.
     Sie werten dazu das Datenblatt des Sensors aus, messen Signallaufzeiten und

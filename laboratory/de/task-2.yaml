@@ -5,7 +5,7 @@ dateCreated: 1689064662293
 name: Komplexaufgabe 2 - Analog-Digital-Wandler
 meta:
   logo: >-
-    https://raw.githubusercontent.com/TUBAF-IfI-LiaScript/VL_EAVD/master/excercise/images/excercise_04.png
+    https://raw.githubusercontent.com/edrys-labs/lab-tubaf-embedded-systems/main/media/task2-logo.png
   description: >-
     Die Studierenden konfigurieren den Analog-Digital-Wandler über direkte
     Registerzugriffe (avrlibc) und rechnen die Messwerte eines
